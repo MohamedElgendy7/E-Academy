@@ -63,17 +63,21 @@
                                                         src="{{$Grade -> photo}}"></td> --}}
                                                 <td>
                                                     <div class="btn-group" role="group" aria-label="Basic example">
+                                                        <a href="{{route('admin.groups.create',$Grade -> id)}}"
+                                                            class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">اضافة
+                                                            مجموعة</a>
+
+                                                        <a href="{{route('admin.grades.show',$Grade -> id)}}"
+                                                            class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">عرض
+                                                            المجموعات</a>
+
+
                                                         <a href="{{route('admin.grades.edit',$Grade -> id)}}"
                                                             class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">تعديل</a>
 
 
                                                         <a href="{{route('admin.grades.delete',$Grade -> id)}}"
                                                             class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">حذف</a>
-
-
-                                                        <a href="{{route('admin.grades.show',$Grade -> id)}}"
-                                                            class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">عرض
-                                                            المجموعات</a>
 
 
                                                         <a href="{{route('admin.grades.status',$Grade -> id)}}"

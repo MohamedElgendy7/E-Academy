@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Student;
 use Illuminate\Http\Request;
+use Laravel\Ui\Presets\React;
 
 class HomeController extends Controller
 {
@@ -13,7 +15,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('guest');
     }
 
     /**
@@ -24,6 +26,16 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+
+    public function profile(Request $request)
+    {
+        $student = Student::with('absent', 'degree')->find($request->id);
+        $absent = $student->absent;
+        $degrees = $student->degree;
+        $cashs = $student->cash;
+        return view('front.profile', compact('student', 'absent', 'degrees', 'cashs'));
     }
 
 

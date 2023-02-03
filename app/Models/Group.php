@@ -36,6 +36,11 @@ class Group extends Model
         return $query->select('id', 'name', 'active', 'main_category_id', 'grade_id');
     }
 
+    public function scopeSame($query, $grade_id, $main_category_id)
+    {
+        return $query->where('grade_id', $grade_id)->where('main_category_id', $main_category_id);
+    }
+
 
     public function getActive()
     {

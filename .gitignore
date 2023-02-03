@@ -5,7 +5,6 @@
 /vendor
 /E-Academy
 /assets
-
 .env
 .env.backup
 .phpunit.result.cache

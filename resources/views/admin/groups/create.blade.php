@@ -76,43 +76,12 @@
                                                         @enderror
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="projectinput2"> أختر الصف </label>
-                                                        <select name="grade_id" class="select2 form-control">
-                                                            <optgroup label="من فضلك أختر القسم ">
-                                                                @if($grades && $grades -> count() > 0)
-                                                                @foreach($grades as $grade)
-                                                                <option value="{{$grade -> id }}">{{$grade ->
-                                                                    name}}</option>
-                                                                @endforeach
-                                                                @endif
-                                                            </optgroup>
-                                                        </select>
-                                                        @error('grade_id')
-                                                        <span class="text-danger"> {{$message}}</span>
-                                                        @enderror
-                                                    </div>
-                                                </div>
 
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="projectinput2"> أختر المقر </label>
-                                                        <select name="main_category_id" class="select2 form-control">
-                                                            <optgroup label="من فضلك أختر القسم ">
-                                                                @if($categories && $categories -> count() > 0)
-                                                                @foreach($categories as $category)
-                                                                <option value="{{$category -> id }}">{{$category ->
-                                                                    name}}</option>
-                                                                @endforeach
-                                                                @endif
-                                                            </optgroup>
-                                                        </select>
-                                                        @error('main_category_id')
-                                                        <span class="text-danger"> {{$message}}</span>
-                                                        @enderror
-                                                    </div>
-                                                </div>
+                                                <input type="hidden" value="{{$grade->id}}" name='grade_id'>
+                                                <input type="hidden" value="{{$grade->main_category_id}}"
+                                                    name='main_category_id'>
+
+
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6">

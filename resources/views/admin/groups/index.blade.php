@@ -66,6 +66,10 @@
                                                     <div class="btn-group" role="group" aria-label="Basic example">
 
 
+                                                        <a href="{{route('admin.student.create',$group ->id)}}"
+                                                            class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">اضافة
+                                                            طالب</a>
+
                                                         <a href="{{route('admin.cash.create',$group ->id)}}"
                                                             class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">تسجيل
                                                             مصروفات</a>

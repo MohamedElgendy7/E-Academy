@@ -14,12 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return phpinfo();
-});
+Route::get('/', 'HomeController@index')->name('home');
+Route::post('/', 'HomeController@profile')->name('student-profile');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/test', 'HomeController@test');
+// Route::get('/test', 'HomeController@test');

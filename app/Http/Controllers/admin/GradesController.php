@@ -8,6 +8,8 @@ use App\Models\Grade;
 use App\Models\Group;
 use App\Models\mainCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Http;
 
 class GradesController extends Controller
 {
@@ -18,13 +20,10 @@ class GradesController extends Controller
     }
 
 
-    public function create()
+    public function create($cat_id)
     {
-        $categories = mainCategory::active()->get();
-        if ($categories->count() == 0) {
-            return redirect()->route('admin.maincategories.create')->with(['error' => 'لا يوجد مقرات قم بأضافة مقر']);
-        }
-        return view('admin.grades.create', compact('categories'));
+        $category = mainCategory::find($cat_id);
+        return view('admin.grades.create', compact('category'));
     }
 
 
@@ -119,8 +118,9 @@ class GradesController extends Controller
 
     public function show($id)
     {
-        $grades = Grade::with('main_category')->find($id);
-        $groups = Group::active()->where('grade_id', $grades->id)->where('main_category_id', $grades->main_category->id)->get();
+        $grades = Grade::with('main_category', 'groups')->find($id);
+        $groups = Group::active()->same($id, $grades->main_category->id)->get();
+        //where('grade_id', $id)->where('main_category_id', $grades->main_category->id)
         return view('admin.groups.index', compact('groups'));
     }
 }

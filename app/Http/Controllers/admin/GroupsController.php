@@ -14,23 +14,22 @@ class GroupsController extends Controller
 {
     public function index()
     {
-
         $groups = Group::with('grades', 'main_category')->selection()->get();
         return view('admin.groups.index', compact('groups'));
     }
 
 
-    public function create()
+    public function create($grade_id)
     {
-        $categories = mainCategory::active()->get();
-        $grades = Grade::active()->get();
-        if ($categories->count() == 0) {
-            return redirect()->route('admin.maincategories.create')->with(['error' => 'لا يوجد مقرات قم بأضافة مقر']);
-        } elseif ($grades->count() == 0) {
-            $categories = mainCategory::active()->get();
-            return redirect()->route('admin.grades.create', compact('categories'))->with(['error' => 'لا يوجد صفوف قم بأضافة صف']);
-        }
-        return view('admin.groups.create', compact('categories', 'grades'));
+        // $categories = mainCategory::active()->get();
+        $grade = Grade::active()->find($grade_id);
+        // if ($categories->count() == 0) {
+        //     return redirect()->route('admin.maincategories.create')->with(['error' => 'لا يوجد مقرات قم بأضافة مقر']);
+        // } elseif ($grades->count() == 0) {
+        //     $categories = mainCategory::active()->get();
+        //     return redirect()->route('admin.grades.create', compact('categories'))->with(['error' => 'لا يوجد صفوف قم بأضافة صف']);
+        // }
+        return view('admin.groups.create', compact('grade'));
     }
 
 
@@ -44,7 +43,7 @@ class GroupsController extends Controller
             $main_id = Grade::find($request->grade_id)->main_category_id;
             if ($main_id == $request->main_category_id) {
                 Group::create($request->except(['_token']));
-                return redirect()->back()->with(['success' => 'تم الاضافة بنجاح']);
+                return redirect()->route('admin.groups')->with(['success' => 'تم الاضافة بنجاح']);
             } else
                 return redirect()->back()->with(['error' => 'هذا الصف لا ينتمي الي هذا المقر']);
         } catch (\Exception $ex) {
@@ -114,7 +113,7 @@ class GroupsController extends Controller
                 $groups->delete();
                 return redirect()->back()->with(['success' => 'تم حذف المجموعة بنجاح']);
             }
-            return redirect()->back()->with(['error' => 'هذا القسم به متاجر قيد العمل ']);
+            return redirect()->back()->with(['error' => 'هذه المجموعة قيد العمل']);
         } catch (\Exception $ex) {
             return redirect()->back()->with(['error' => 'هناك خطأ ما يرجي المحاولة مرة اخري']);
         }

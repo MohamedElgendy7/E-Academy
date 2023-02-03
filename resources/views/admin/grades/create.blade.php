@@ -48,23 +48,9 @@
                                 <div class="card-body">
                                     <form class="form" action="{{route('admin.grades.store')}}" method="POST">
                                         @csrf
-                                        {{-- <div class="form-group">
-                                            <label> صوره القسم </label>
-                                            <label id="projectinput7" class="file center-block">
-                                                <input type="file" id="file" name="photo">
-                                                <span class="file-custom"></span>
-                                            </label>
-                                            @error('photo')
-                                            <span class="text-danger">{{$message}}</span>
-                                            @enderror
-                                        </div> --}}
 
                                         <div class="form-body">
-
                                             <h4 class="form-section"><i class="ft-home"></i> بيانات الصف </h4>
-
-                                            {{-- @if(get_languages() -> count() > 0) --}}
-                                            {{-- @foreach(get_languages() as $index => $lang) --}}
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
@@ -77,24 +63,9 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="projectinput2"> أختر المقر </label>
-                                                        <select name="main_category_id" class="select2 form-control">
-                                                            <optgroup label="من فضلك أختر القسم ">
-                                                                @if($categories && $categories -> count() > 0)
-                                                                @foreach($categories as $category)
-                                                                <option value="{{$category -> id }}">{{$category ->
-                                                                    name}}</option>
-                                                                @endforeach
-                                                                @endif
-                                                            </optgroup>
-                                                        </select>
-                                                        @error('main_category_id')
-                                                        <span class="text-danger"> {{$message}}</span>
-                                                        @enderror
-                                                    </div>
-                                                </div>
+                                                <input type="hidden" value="{{$category->id}}" name='main_category_id'>
+
+
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6">

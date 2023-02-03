@@ -59,7 +59,7 @@ Route::group(
         Route::group(['prefix' => 'grades'], function () {
             Route::get('/', 'GradesController@index')->name('admin.grades');
 
-            Route::get('create', 'GradesController@create')->name('admin.grades.create');
+            Route::get('create/{cat_id}', 'GradesController@create')->name('admin.grades.create');
             Route::post('store', 'GradesController@store')->name('admin.grades.store');
 
             Route::get('edit/{id}', 'GradesController@edit')->name('admin.grades.edit');
@@ -77,7 +77,7 @@ Route::group(
         Route::group(['prefix' => 'student'], function () {
             Route::get('/', 'StudentController@index')->name('admin.student');
 
-            Route::get('create', 'StudentController@create')->name('admin.student.create');
+            Route::get('create/{group_id}', 'StudentController@create')->name('admin.student.create');
             Route::post('store', 'StudentController@store')->name('admin.student.store');
 
             Route::get('edit/{id}', 'StudentController@edit')->name('admin.student.edit');
@@ -97,7 +97,7 @@ Route::group(
 
             Route::get('/', 'GroupsController@index')->name('admin.groups');
 
-            Route::get('create', 'GroupsController@create')->name('admin.groups.create');
+            Route::get('create/{id}', 'GroupsController@create')->name('admin.groups.create');
             Route::post('store', 'GroupsController@store')->name('admin.groups.store');
 
             Route::get('edit/{id}', 'GroupsController@edit')->name('admin.groups.edit');
