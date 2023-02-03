@@ -55,6 +55,7 @@ Route::group(
         });
         ######################### End Main Categoris Route ########################
 
+
         ######################### Begin grades Routes ########################
         Route::group(['prefix' => 'grades'], function () {
             Route::get('/', 'GradesController@index')->name('admin.grades');
