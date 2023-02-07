@@ -36,7 +36,9 @@ class ExamObserver
      */
     public function deleted(Exam $exam)
     {
-        $exam->degrees->delete();
+        if ($exam->degrees->count() > 0) {
+            $exam->degrees->delete();
+        }
     }
 
     /**

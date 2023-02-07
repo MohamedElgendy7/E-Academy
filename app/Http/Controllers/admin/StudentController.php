@@ -5,11 +5,13 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StudentRequest;
 use App\Models\Cash;
+use App\Models\Exam;
 use App\Models\Grade;
 use App\Models\Group;
 use App\Models\mainCategory;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\If_;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class StudentController extends Controller
@@ -18,40 +20,14 @@ class StudentController extends Controller
     {
         $students = Student::with('mainCategory', 'groups', 'grades')->selection()->get();
         if ($students->count() == 0) {
-            $main_category = mainCategory::active()->get();
-            $groups = Group::active()->get();
-            $grades = Grade::active()->get();
-            if ($main_category->count() == 0) {
-                return redirect()->route('admin.maincategories.create')->with(['error' => 'لا يوجد مقرات قم بأضافة مقر']);
-            } elseif ($grades->count() == 0) {
-                $categories = mainCategory::active()->get();
-                return redirect()->route('admin.grades.create', compact('categories'))->with(['error' => 'لا يوجد صفوف قم بأضافة صف']);
-            } elseif ($groups->count() == 0) {
-                $categories = mainCategory::active()->get();
-                $grades = Grade::active()->get();
-                return redirect()->route('admin.groups.create', compact('categories', 'grades'))->with(['error' => 'لا يوجد مجموعات قم بأضافة مجموعة']);
-            }
-            return redirect()->route('admin.student.create', compact('main_category', 'groups', 'grades'))->with(['error' => 'لا يوجد طلاب ,قم بأضافة طلاب']);
+            return redirect()->route('admin.maincategories')->with(['error' => 'قم بأضافة طالب اولاً']);
         }
         return view('admin.student.index', compact('students'));
     }
 
-
     public function create($group_id)
     {
-        // $main_category = mainCategory::active()->get();
-        // $grades = Grade::active()->get();
         $group = Group::active()->find($group_id);
-        // if ($main_category->count() == 0) {
-        //     return redirect()->route('admin.maincategories.create')->with(['error' => 'لا يوجد مقرات قم بأضافة مقر']);
-        // } elseif ($grades->count() == 0) {
-        //     $categories = mainCategory::active()->get();
-        //     return redirect()->route('admin.grades.create', compact('categories'))->with(['error' => 'لا يوجد صفوف قم بأضافة صف']);
-        // } elseif ($group->count() == 0) {
-        //     $categories = mainCategory::active()->get();
-        //     $grades = Grade::active()->get();
-        //     return redirect()->route('admin.groups.create', compact('categories', 'grades'))->with(['error' => 'لا يوجد مجموعات قم بأضافة مجموعة']);
-        // }
         return view('admin.student.create', compact('group'));
     }
 
@@ -59,7 +35,6 @@ class StudentController extends Controller
     public function store(StudentRequest $request)
     {
         try {
-            // return $request;
             if (!$request->has('active'))
                 $request->request->add(['active' => 0]);
 
@@ -103,12 +78,10 @@ class StudentController extends Controller
     public function update(StudentRequest $request, $id)
     {
         try {
-            //check
             $main_category = Student::find($id);
             if (!$main_category) {
                 return redirect()->route('admin.student')->with(['error' => 'هذا الصف غير موجود']);
             }
-            //update;
 
             if (!$request->has('active'))
                 $request->request->add(['active' => 0]);
@@ -130,18 +103,21 @@ class StudentController extends Controller
     public function destroy($id)
     {
         try {
-            $category = Student::find($id);
-            if (!$category)
-                return redirect()->route('admin.student', $id)->with(['error' => 'هذه الصف غير موجوده']);
+            $Student = Student::find($id);
+            if (!$Student)
+                return redirect()->route('admin.groups')->with(['error' => 'هذه الطالب غير موجوده']);
 
             $image = public_path('qrcodes/' . $id . '.png');
-            unlink($image);
-            $category->delete();
 
-            return redirect()->route('admin.student')->with(['success' => 'تم حذف الصف بنجاح']);
+            if (file_exists($image)) {
+                unlink($image);
+            }
+            $Student->delete();
+
+            return redirect()->route('admin.groups')->with(['success' => 'تم حذف الطالب بنجاح']);
         } catch (\Exception $ex) {
             return $ex;
-            return redirect()->route('admin.student')->with(['error' => 'هناك خطأ ما يرجي المحاولة مرة اخري']);
+            return redirect()->route('admin.groups')->with(['error' => 'هناك خطأ ما يرجي المحاولة مرة اخري']);
         }
     }
 
@@ -170,5 +146,15 @@ class StudentController extends Controller
         $degrees = $student->degree;
         $cashs = $student->cash;
         return view('admin.student.profile', compact('student', 'absent', 'degrees', 'cashs'));
+    }
+
+    public function show($id)
+    {
+        $group = Group::with('main_category', 'grades')->find($id);
+        $students = Student::active()->same($group->grades->id, $group->main_category->id, $id)->get();
+        if ($students->count() > 0) {
+            return view('admin.student.index', compact('students'));
+        }
+        return redirect()->route('admin.student.create', $id)->with(['error' => 'قم بأضافة طالب اولاً']);
     }
 }

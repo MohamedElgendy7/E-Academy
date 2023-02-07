@@ -11,8 +11,11 @@ class ExamController extends Controller
 {
     public function index()
     {
-        $exams = Exam::get();
-        return view('admin.exams.index', compact('exams'));
+        $exams = Exam::all();
+        if ($exams->count() > 0) {
+            return view('admin.exams.index', compact('exams'));
+        }
+        return redirect()->route('admin.exam.create')->with(['error' => 'قم بأضافة امتحان اولاً']);
     }
 
     public function create()
@@ -36,7 +39,6 @@ class ExamController extends Controller
             }
             return view('admin.exams.edit', compact('exam'));
         } catch (\Exception $ex) {
-            return $ex;
             return redirect()->route('admin.exam')->with(['error' => 'حدث خطأ ما']);
         }
     }
@@ -53,6 +55,7 @@ class ExamController extends Controller
 
             Exam::where('id', $id)->update([
                 'name' => $request->name,
+                'max_degree' => $request->max_degree,
             ]);
 
             return redirect()->route('admin.exam')->with(['success' => 'تم التحديث بنجاح']);
@@ -67,12 +70,11 @@ class ExamController extends Controller
         try {
             $exam = Exam::find($id);
             if (!$exam)
-                return redirect()->route('admin.exam', $id)->with(['error' => 'هذا الامتحان غير موجود=']);
+                return redirect()->route('admin.exam', $id)->with(['error' => 'هذا الامتحان غير موجود']);
 
             $exam->delete();
             return redirect()->route('admin.exam')->with(['success' => 'تم الحذف بنجاح']);
         } catch (\Exception $ex) {
-            return $ex;
             return redirect()->route('admin.exam')->with(['error' => 'هناك خطأ ما يرجي المحاولة مرة اخري']);
         }
     }

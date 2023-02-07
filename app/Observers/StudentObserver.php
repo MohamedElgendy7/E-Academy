@@ -2,7 +2,9 @@
 
 namespace App\Observers;
 
+use App\Models\Degree;
 use App\Models\Student;
+use PhpParser\Node\Stmt\For_;
 
 class StudentObserver
 {
@@ -36,9 +38,9 @@ class StudentObserver
      */
     public function deleted(Student $student)
     {
-        $student->absent->delete();
-        $student->degree->delete();
-        $student->cash->delete();
+        $student->absent()->delete();
+        $student->cash()->delete();
+        $student->degree()->delete();
     }
 
     /**

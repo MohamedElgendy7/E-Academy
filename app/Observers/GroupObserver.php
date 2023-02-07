@@ -39,7 +39,9 @@ class GroupObserver
      */
     public function deleted(Group $group)
     {
-        $group->students->delete();
+        if ($group->students->count() > 0) {
+            $group->students->delete();
+        }
     }
 
     /**

@@ -25,16 +25,14 @@
             <section id="basic-form-layouts">
                 <div class="row match-height">
                     <div class="col-md-12">
-                        <div class="card">
+                        <div class="card border-primary">
                             <div class="card-header">
                                 <h4 class="card-title" id="basic-layout-form"> تعديل بيانات طالب </h4>
                                 <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                 <div class="heading-elements">
                                     <ul class="list-inline mb-0">
                                         <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-                                        <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
                                         <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
-                                        <li><a data-action="close"><i class="ft-x"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -56,7 +54,7 @@
                                         <div class="form-body">
                                             <h4 class="form-section"><i class="ft-home"></i> بيانات الطالب </h4>
                                             <div class="row">
-                                                <div class="col-md-12">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="projectinput1"> اسم الطالب
                                                         </label>
@@ -131,32 +129,16 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
-                                        {{-- <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group mt-1">
-                                                    <input type="checkbox" value="1" name="active" id="switcheryColor4"
-                                                        class="switchery" data-color="success" @if($student -> active ==
-                                                    1)checked @endif/>
-                                                    <label for="switcheryColor4" class="card-title ml-1">الحالة
-                                                    </label>
-                                                    @error("active")
-                                                    <span class="text-danger"> </span>
-                                                    @enderror
-                                                </div>
-                                            </div>--}}
-
-
-                                            <div class="form-actions">
-                                                <button type="button" class="btn btn-warning mr-1"
-                                                    onclick="history.back();">
-                                                    <i class="ft-x"></i> تراجع
-                                                </button>
-                                                <button type="submit" class="btn btn-primary">
-                                                    <i class="la la-check-square-o"></i> تحديث
-                                                </button>
-                                            </div>
+                                        <div class="form-actions">
+                                            <button type="button" class="btn btn-warning mr-1"
+                                                onclick="history.back();">
+                                                <i class="ft-x"></i> تراجع
+                                            </button>
+                                            <button type="submit" class="btn btn-primary">
+                                                <i class="la la-check-square-o"></i> تحديث
+                                            </button>
+                                        </div>
                                     </form>
                                     <div class="tab-content px-1 pt-1">
                                     </div>

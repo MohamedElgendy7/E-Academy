@@ -23,7 +23,7 @@
             <section id="dom">
                 <div class="row">
                     <div class="col-12">
-                        <div class="card">
+                        <div class="card border-primary">
                             <div class="card-header">
                                 <h4 class="card-title">درجات طلاب المجموعة
                                     - {{App\Models\Group::find($group_id)->name}} </h4>
@@ -57,7 +57,8 @@
                                             @foreach($degrees as $degree)
                                             <tr>
                                                 <td>{{App\Models\student::find($degree -> student_id)->name}}</td>
-                                                <td>{{$degree ->degree}}</td>
+                                                <td>{{$degree
+                                                    ->degree}}/{{App\Models\Exam::find($exam_id)->max_degree}}</td>
                                             </tr>
                                             @endforeach
                                             @endisset

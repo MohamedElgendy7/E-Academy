@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Cash;
 use App\Models\Group;
 use App\Models\Month;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class CashController extends Controller
@@ -18,33 +19,37 @@ class CashController extends Controller
 
     public function create($group_id)
     {
-        $students = Group::with('students')->find($group_id)->students;
-        if ($students->count() == 0) {
-            return redirect()->route('admin.student.create')->with(['error' => 'قم بأضافة طلاب اولاً']);
+        try {
+            $students = Group::with('students')->find($group_id)->students;
+            if (Month::count() == 0) {
+                return redirect()->route('admin.cash.month.create')->with(['error' => 'قم بالتسجيل اولاً']);
+            }
+            if ($students->count() == 0) {
+                return redirect()->route('admin.student.create')->with(['error' => 'قم بأضافة طلاب اولاً']);
+            }
+            $months = Month::active()->get();
+            return view('admin.cash.create', compact('students', 'months'));
+        } catch (\Exception $ex) {
+            //
         }
-        $months = Month::active()->get();
-        return view('admin.cash.create', compact('students', 'months'));
     }
 
     public function store(Request $request)
     {
-        return $request;
         try {
-            if (Month::count() == 0) {
+
+            $group_id = Student::find($request->student_id)->group_id;
+            $cash = Cash::where('student_id', $request->student_id)->where('month', $request->month)->get();
+
+            if ($cash->count() == 0) {
                 Cash::create($request->except('_token'));
-                return redirect()->back()->with(['success' => 'تم تسجل الدفع']);
+                return redirect()->route('admin.cash.create', $group_id)->with(['success' => 'تم تسجل الدفع']);
             }
-            $months = Month::get();
-            $arr = [];
-            for ($i = 0; $i < $months->count(); $i++) {
-                $arr[] = $months[$i]['name'];
-            }
-            if (!in_array($request->name, $arr)) {
-                Cash::create($request->except('_token'));
-                return redirect()->back()->with(['success' => 'تم تسجل الدفع']);
-            }
+
+            return redirect()->route('admin.cash.create', $group_id)->with(['error' => 'تم التسجيل من قبل']);
         } catch (\Exception $ex) {
-            return redirect()->route('admin.cash.create')->with(['error' => 'حدث خطأ ما ']);
+            return $ex;
+            return redirect()->route('admin.cash.create', $group_id)->with(['error' => 'حدث خطأ ما ']);
         }
     }
 }

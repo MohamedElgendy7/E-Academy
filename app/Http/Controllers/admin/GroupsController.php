@@ -15,7 +15,10 @@ class GroupsController extends Controller
     public function index()
     {
         $groups = Group::with('grades', 'main_category')->selection()->get();
-        return view('admin.groups.index', compact('groups'));
+        if ($groups->count() > 0) {
+            return view('admin.groups.index', compact('groups'));
+        }
+        return redirect()->route('admin.grades')->with(['error' => 'لا يوجد مجاميع . قم بأضافة مجموعة']);
     }
 
 
@@ -103,16 +106,15 @@ class GroupsController extends Controller
     public function destroy($id)
     {
         try {
-            $groups = Group::find($id);
+            $groups = Group::with('students')->find($id);
             if (!$groups)
                 return redirect()->route('admin.groups', $id)->with(['error' => 'هذه المجموعة غير موجوده']);
 
-
-            $status = $groups->active;
-            if ($status ==  0) {
+            if (!$groups->students->count()  > 0 && $groups->active == 1) {
                 $groups->delete();
                 return redirect()->back()->with(['success' => 'تم حذف المجموعة بنجاح']);
             }
+
             return redirect()->back()->with(['error' => 'هذه المجموعة قيد العمل']);
         } catch (\Exception $ex) {
             return redirect()->back()->with(['error' => 'هناك خطأ ما يرجي المحاولة مرة اخري']);
@@ -134,13 +136,5 @@ class GroupsController extends Controller
         } catch (\Exception $ex) {
             return redirect()->route('admin.groups')->with(['error' => 'هناك خطأ ما يرجي المحاولة مرة اخري']);
         }
-    }
-
-
-    public function show($id)
-    {
-        $group = Group::with('main_category', 'grades')->find($id);
-        $students = Student::active()->same($group->grades->id, $group->main_category->id, $id)->get();
-        return view('admin.student.index', compact('students'));
     }
 }

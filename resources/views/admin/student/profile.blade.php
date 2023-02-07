@@ -25,9 +25,9 @@
             <section id="dom">
                 <div class="row">
                     <div class="col-12">
-                        <div class="card">
+                        <div class="card border-primary">
                             <div class="card-header">
-                                <h4 class="card-title"> بيانات الطالب -
+                                <h4 class="card-title"> بيانات الطالب
                                     <a class="heading-elements-toggle"><i
                                             class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
@@ -89,9 +89,9 @@
             <section id="dom">
                 <div class="row">
                     <div class="col-12">
-                        <div class="card">
+                        <div class="card border-primary">
                             <div class="card-header">
-                                <h4 class="card-title"> غياب الطالب -
+                                <h4 class="card-title"> غياب الطالب
                                     <a class="heading-elements-toggle"><i
                                             class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
@@ -103,19 +103,28 @@
                                         </ul>
                                     </div>
                             </div>
-                            <a href="{{route('download',$student ->id)}}" class="">
 
-                                <div class="qr" style='text-align: center'>
-                                    {{QrCode::size(200)
-                                    ->format('png')
-                                    ->generate
-                                    ('http://'.domain.'/admin/absent/qr/'.$student->id,'public/qrcodes/'.$student->id.'.png')
-                                    }}
 
-                                    <img style="width: 150px; height: 150px;"
-                                        src="{{'/public/qrcodes/'.$student->id.'.png'}}">
+                            <div class="qr" style='text-align: center'>
+
+                                {{QrCode::size(200)
+                                ->format('png')
+                                ->generate
+                                ('http://'.domain.'/admin/absent/qr/'.$student->id,'public/qrcodes/'.$student->id.'.png')
+                                }}
+                                <div id="divToPrint">
+                                    <a href="{{route('download',$student ->id)}}" class="">
+                                        <img style="width: 150px; height: 150px;"
+                                            src="{{'/public/qrcodes/'.$student->id.'.png'}}">
+                                    </a>
                                 </div>
-                            </a>
+                                <br>
+
+                                <div style='text-align: center'>
+                                    <input type="button" class="btn btn btn-info btn-min-width box-shadow-3 mr-1 mb-1"
+                                        value="طباعة QR" onclick="PrintDiv();" />
+                                </div>
+                            </div>
                             <div class="card-content collapse show">
                                 <div class="card-body card-dashboard">
                                     <table class="table display nowrap table-striped table-bordered ">
@@ -153,9 +162,9 @@
             <section id="dom">
                 <div class="row">
                     <div class="col-12">
-                        <div class="card">
+                        <div class="card border-primary">
                             <div class="card-header">
-                                <h4 class="card-title"> درجات الطالب -
+                                <h4 class="card-title"> درجات الطالب
                                     <a class="heading-elements-toggle"><i
                                             class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
@@ -186,7 +195,8 @@
                                             @foreach($degrees as $degree)
                                             <tr>
                                                 <td>{{App\Models\Exam::find($degree -> exam_id)->name}}</td>
-                                                <td>{{$degree -> degree}}</td>
+                                                <td>{{$degree -> degree}}/{{App\Models\Exam::find($degree ->
+                                                    exam_id)->max_degree}}</td>
                                             </tr>
                                             @endforeach
                                             @endisset
@@ -207,9 +217,9 @@
             <section id="dom">
                 <div class="row">
                     <div class="col-12">
-                        <div class="card">
+                        <div class="card border-primary">
                             <div class="card-header">
-                                <h4 class="card-title"> مصرفات الطالب -
+                                <h4 class="card-title"> مصرفات الطالب
                                     <a class="heading-elements-toggle"><i
                                             class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
@@ -258,4 +268,15 @@
         </div>
     </div>
 </div>
+@endsection
+@section('script')
+<script type="text/javascript">
+    function PrintDiv() {    
+                var divToPrint = document.getElementById('divToPrint');
+                var popupWin = window.open('', '_blank', 'width=300,height=300');
+                popupWin.document.open();
+                popupWin.document.write('<html><body onload="window.print()"><center>' + divToPrint.innerHTML +'<br><h2>'+{{$student->id}}+'</h2></center></html>');
+                popupWin.document.close();
+                        }
+</script>
 @endsection

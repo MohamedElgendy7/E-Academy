@@ -83,6 +83,8 @@ Route::group(
             Route::get('edit/{id}', 'StudentController@edit')->name('admin.student.edit');
             Route::post('update/{id}', 'StudentController@update')->name('admin.student.update');
 
+            Route::get('show/{id}', 'StudentController@show')->name('admin.student.show');
+
             Route::get('delete/{id}', 'StudentController@destroy')->name('admin.student.delete');
 
             Route::get('changeStatus/{id}', 'StudentController@changeStatus')->name('admin.student.status');
@@ -106,8 +108,6 @@ Route::group(
             Route::get('delete/{id}', 'GroupsController@destroy')->name('admin.groups.delete');
 
             Route::get('changeStatus/{id}', 'GroupsController@changeStatus')->name('admin.groups.status');
-
-            Route::get('show/{id}', 'GroupsController@show')->name('admin.groups.show');
         });
         ######################### End subcategories Route ########################
 

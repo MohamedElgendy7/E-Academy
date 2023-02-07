@@ -25,7 +25,7 @@
             <section id="basic-form-layouts">
                 <div class="row match-height">
                     <div class="col-md-12">
-                        <div class="card">
+                        <div class="card border-primary">
                             <div class="card-header">
                                 <h4 class="card-title" id="basic-layout-form"> تسجيل المصروفات</h4>
                                 <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
@@ -95,16 +95,17 @@
                                                     @enderror
                                                 </div>
                                             </div>
+                                        </div>
 
-                                            <div class="form-actions">
-                                                <button type="button" class="btn btn-warning mr-1"
-                                                    onclick="history.back();">
-                                                    <i class="ft-x"></i> تراجع
-                                                </button>
-                                                <button type="submit" class="btn btn-primary">
-                                                    <i class="la la-check-square-o"></i> حفظ
-                                                </button>
-                                            </div>
+                                        <div class="form-actions">
+                                            <button type="button" class="btn btn-warning mr-1"
+                                                onclick="history.back();">
+                                                <i class="ft-x"></i> تراجع
+                                            </button>
+                                            <button type="submit" class="btn btn-primary">
+                                                <i class="la la-check-square-o"></i> حفظ
+                                            </button>
+                                        </div>
                                     </form>
                                 </div>
                             </div>

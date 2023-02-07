@@ -20,21 +20,19 @@
                 </div>
             </div>
         </div>
-        <div class="content-body">
+        <div class="content-body ">
             <!-- Basic form layout section start -->
             <section id="basic-form-layouts">
                 <div class="row match-height">
                     <div class="col-md-12">
-                        <div class="card">
+                        <div class="card border-primary">
                             <div class="card-header">
                                 <h4 class="card-title" id="basic-layout-form"> إضافة طالب </h4>
                                 <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                 <div class="heading-elements">
                                     <ul class="list-inline mb-0">
                                         <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-                                        <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
                                         <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
-                                        <li><a data-action="close"><i class="ft-x"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -48,23 +46,9 @@
                                 <div class="card-body">
                                     <form class="form" action="{{route('admin.student.store')}}" method="POST">
                                         @csrf
-                                        {{-- <div class="form-group">
-                                            <label> صوره القسم </label>
-                                            <label id="projectinput7" class="file center-block">
-                                                <input type="file" id="file" name="photo">
-                                                <span class="file-custom"></span>
-                                            </label>
-                                            @error('photo')
-                                            <span class="text-danger">{{$message}}</span>
-                                            @enderror
-                                        </div> --}}
 
                                         <div class="form-body">
-
                                             <h4 class="form-section"><i class="ft-home"></i> بيانات الطالب </h4>
-
-                                            {{-- @if(get_languages() -> count() > 0) --}}
-                                            {{-- @foreach(get_languages() as $index => $lang) --}}
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
@@ -99,19 +83,12 @@
                                                     </div>
                                                 </div>
 
-
                                                 <input type="hidden" value="{{$group->main_category_id}}"
                                                     name='main_category_id'>
-
-
                                                 <input type="hidden" value="{{$group->grade_id}}" name='grade_id'>
-
-
                                                 <input type="hidden" value="{{$group->id}}" name='group_id'>
 
-
                                             </div>
-
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group mt-1">
@@ -128,6 +105,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="form-actions">
                                             <button type="button" class="btn btn-warning mr-1"
                                                 onclick="history.back();">

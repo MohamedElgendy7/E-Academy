@@ -23,16 +23,14 @@
             <section id="dom">
                 <div class="row">
                     <div class="col-12">
-                        <div class="card">
+                        <div class="card border-primary">
                             <div class="card-header">
                                 <h4 class="card-title">جميع المجموعات </h4>
                                 <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                 <div class="heading-elements">
                                     <ul class="list-inline mb-0">
                                         <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-                                        <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
                                         <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
-                                        <li><a data-action="close"><i class="ft-x"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -70,13 +68,15 @@
                                                             class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">اضافة
                                                             طالب</a>
 
-                                                        <a href="{{route('admin.cash.create',$group ->id)}}"
-                                                            class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">تسجيل
-                                                            مصروفات</a>
 
-                                                        <a href="{{route('admin.groups.show',$group -> id)}}"
+                                                        <a href="{{route('admin.student.show',$group -> id)}}"
                                                             class="btn btn-outline-dark btn-min-width box-shadow-3 mr-1 mb-1">عرض
                                                             الطلاب</a>
+
+
+                                                        <a href="{{route('admin.degree.create',$group -> id)}}"
+                                                            class="btn btn-outline-success btn-min-width box-shadow-3 mr-1 mb-1">
+                                                            تسجيل درجات</a>
 
 
                                                         <a href="{{route('admin.degree.show',$group -> id)}}"
@@ -85,14 +85,9 @@
                                                         </a>
 
 
-                                                        <a href="{{route('admin.absent.create',$group -> id)}}"
-                                                            class="btn btn-outline-success btn-min-width box-shadow-3 mr-1 mb-1">
-                                                            تسجيل الحضور</a>
-
-
-                                                        <a href="{{route('admin.degree.create',$group -> id)}}"
-                                                            class="btn btn-outline-success btn-min-width box-shadow-3 mr-1 mb-1">
-                                                            تسجيل درجات</a>
+                                                        <a href="{{route('admin.cash.create',$group ->id)}}"
+                                                            class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">تسجيل
+                                                            مصروفات</a>
 
 
                                                         <a href="{{route('admin.groups.status',$group -> id)}}"

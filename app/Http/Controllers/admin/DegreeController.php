@@ -23,11 +23,14 @@ class DegreeController extends Controller
 
     public function store(Request $request)
     {
-        // return $request;
+        $max_degree = Exam::find($request->exam_id);
+        if ($request->degree > $max_degree->max_degree) {
+            return redirect()->back()->with(['error' => 'يجب ان تكون الدرجة اصغر من الدرجة الكلية ']);
+        }
         $arr = [];
-        $exam_id = Degree::where('student_id', $request->student_id)->get();
-        for ($i = 0; $i < $exam_id->count(); $i++) {
-            $arr[] = $exam_id[$i]['exam_id'];
+        $degrees = Degree::where('student_id', $request->student_id)->get();
+        for ($i = 0; $i < $degrees->count(); $i++) {
+            $arr[] = $degrees[$i]['exam_id'];
         }
         if (!in_array($request->exam_id, $arr)) {
             Degree::create($request->except('_token'));
@@ -46,6 +49,6 @@ class DegreeController extends Controller
     public function results($group_id, $exam_id)
     {
         $degrees = Degree::where('group_id', $group_id)->where('exam_id', $exam_id)->get();
-        return view('admin.degrees.results', compact('degrees', 'group_id'));
+        return view('admin.degrees.results', compact('degrees', 'group_id', 'exam_id'));
     }
 }

@@ -25,7 +25,7 @@
             <section id="basic-form-layouts">
                 <div class="row match-height">
                     <div class="col-md-12">
-                        <div class="card">
+                        <div class="card border-primary">
                             <div class="card-header">
                                 <h4 class="card-title" id="basic-layout-form"> تسجيل امتحان</h4>
                                 <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
@@ -52,6 +52,17 @@
                                                     <input type="text" value="" id="name" class="form-control"
                                                         placeholder="" name="name">
                                                     @error("name")
+                                                    <span class="text-danger"> هذا الحقل مطلوب</span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="projectinput1">الدرجة الكلية</label>
+                                                    <input type="number" value="" id="name" class="form-control"
+                                                        placeholder="" name="max_degree">
+                                                    @error("max_degree")
                                                     <span class="text-danger"> هذا الحقل مطلوب</span>
                                                     @enderror
                                                 </div>

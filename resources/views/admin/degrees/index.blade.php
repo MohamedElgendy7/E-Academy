@@ -23,7 +23,7 @@
             <section id="dom">
                 <div class="row">
                     <div class="col-12">
-                        <div class="card">
+                        <div class="card border-primary">
                             <div class="card-header">
                                 <h4 class="card-title"> الامتحانات</h4>
                                 <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>

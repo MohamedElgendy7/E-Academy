@@ -23,7 +23,7 @@
             <section id="dom">
                 <div class="row">
                     <div class="col-12">
-                        <div class="card">
+                        <div class="card border-primary">
                             <div class="card-header">
                                 <h4 class="card-title">جميع الامتحانات </h4>
                                 <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
@@ -46,10 +46,6 @@
                                         <thead class="">
                                             <tr>
                                                 <th>الاسم</th>
-                                                {{-- <th> العلامة التجارية</th>
-                                                <th>الهاتف</th>
-                                                <th>القسم الرئيسي</th>
-                                                <th> الحالة</th> --}}
                                                 <th>الإجراءات</th>
                                             </tr>
                                         </thead>
@@ -59,10 +55,6 @@
                                             @foreach($exams as $exam)
                                             <tr>
                                                 <td>{{$exam ->name}}</td>
-                                                {{-- <td>{{$vendor ->mobile}}</td>
-                                                <td> {{$vendor ->category->name}}</td>
-                                                <td> {{$vendor -> getActive()}}</td> --}}
-
                                                 <td>
                                                     <div class="btn-group" role="group" aria-label="Basic example">
                                                         <a href="{{route('admin.exam.edit',$exam ->id)}}"

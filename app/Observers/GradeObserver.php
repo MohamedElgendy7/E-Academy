@@ -36,8 +36,12 @@ class GradeObserver
      */
     public function deleted(Grade $grade)
     {
-        $grade->groups->delete();
-        $grade->students->delete();
+        if ($grade->groups->count() > 0) {
+            $grade->groups->delete();
+        }
+        if ($grade->students->count() > 0) {
+            $grade->students->delete();
+        }
     }
 
     /**

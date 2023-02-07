@@ -26,13 +26,7 @@ class mainCategory extends Model
     }
 
 
-    //relations 
 
-    //get all translation
-    public function categories()
-    {
-        return  $this->hasMany(self::class, 'translation_of', 'id');
-    }
 
 
 
@@ -63,7 +57,9 @@ class mainCategory extends Model
     }
 
 
-    //relations
+    //relations 
+
+
     public function grades()
     {
         return $this->hasMany(Grade::class, 'main_category_id', 'id');
