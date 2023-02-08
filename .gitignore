@@ -4,7 +4,7 @@
 /storage/*.key
 /vendor
 /E-Academy
-/assets
+# /assets
 /public/assets
 .env
 .env.backup
