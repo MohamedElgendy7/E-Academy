@@ -84,6 +84,16 @@
                         <input type="text" class="form-control" name='id' placeholder="ادخل رقم الطالب">
                     </div>
                     <button type="submit" class="btn btn-success">عرض ملف الطالب</button>
+
+                    <button class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">
+                        <a href=" {{route('video.UserIndex')}}"
+                            class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">الفيديوهات</a>
+                    </button>
+
+                    <button class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">
+                        <a href=" {{route('Docs.UserIndex')}}"
+                            class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">الملفات</a>
+                    </button>
                 </form>
             </div>
         </div>

@@ -34,10 +34,6 @@
                                         <li class="active"><a class="menu-item" href="{{route('admin.grades')}}"
                                                         data-i18n="nav.dash.ecommerce"> عرض الكل </a>
                                         </li>
-                                        {{-- <li><a class="menu-item" href="{{route('admin.grades.create')}}"
-                                                        data-i18n="nav.dash.crypto">أضافة
-                                                        صف جديد </a>
-                                        </li> --}}
                                 </ul>
                         </li>
 
@@ -51,10 +47,6 @@
                                         <li class="active"><a class="menu-item" href="{{route('admin.groups')}}"
                                                         data-i18n="nav.dash.ecommerce"> عرض الكل </a>
                                         </li>
-                                        {{-- <li><a class="menu-item" href="{{route('admin.groups.create')}}"
-                                                        data-i18n="nav.dash.crypto">أضافة
-                                                        مجموعة </a>
-                                        </li> --}}
                                 </ul>
                         </li>
 
@@ -102,10 +94,41 @@
                                                         data-i18n="nav.dash.ecommerce">
                                                         عرض الكل </a>
                                         </li>
-                                        {{-- <li><a class="menu-item" href="{{route('admin.cash.month.create')}}"
-                                                        data-i18n="nav.dash.crypto">أضافة
-                                                        شهر جديد </a>
-                                        </li> --}}
+                                </ul>
+                        </li>
+
+
+                        <li class="nav-item"><a href=""><i class="la la-youtube"></i>
+                                        <span class="menu-title" data-i18n="nav.dash.main">الفيديوهات </span>
+                                        <span
+                                                class="badge badge badge-danger  badge-pill float-right mr-2">{{App\Models\Video::count()}}</span>
+                                </a>
+                                <ul class="menu-content">
+                                        <li class="active"><a class="menu-item" href="{{route('admin.video.index')}}"
+                                                        data-i18n="nav.dash.ecommerce">
+                                                        عرض الكل </a>
+                                        </li>
+
+                                        <li class="active"><a class="menu-item" href="{{route('admin.video.create')}}"
+                                                        data-i18n="nav.dash.ecommerce">
+                                                        اضافة فيديو جديد</a>
+                                        </li>
+
+                                </ul>
+                        </li>
+
+
+                        <li class="nav-item"><a href=""><i class="la la-file"></i>
+                                        <span class="menu-title" data-i18n="nav.dash.main">الملفات </span>
+                                        <span
+                                                class="badge bg-light text-dark  badge-pill float-right mr-2">{{App\Models\Doc::count()}}</span>
+                                </a>
+                                <ul class="menu-content">
+                                        <li class="active"><a class="menu-item" href="{{route('admin.doc.index')}}"
+                                                        data-i18n="nav.dash.ecommerce">
+                                                        عرض الكل </a>
+                                        </li>
+
                                 </ul>
                         </li>
         </div>

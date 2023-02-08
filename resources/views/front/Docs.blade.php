@@ -10,7 +10,7 @@
     <meta name="keywords"
         content="admin template, modern admin template, dashboard template, flat admin template, responsive admin template, web app, crypto dashboard, bitcoin dashboard">
     <meta name="author" content="PIXINVENT">
-    <title>@yield('title')</title>
+    <title>الفيديوهات</title>
     <link rel="apple-touch-icon" href="{{asset('assets/admin/images/ico/apple-icon-120.png')}}">
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/admin/images/ico/favicon.ico')}}">
     <link
@@ -24,8 +24,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/weather-icons/climacons.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/fonts/meteocons/style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/charts/morris.css')}}">
-    {{--
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/charts/chartist.css')}}"> --}}
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/charts/chartist.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/forms/selects/select2.min.css')}}">
     <link rel="stylesheet" type="text/css"
         href="{{asset('assets/admin/vendors/css/charts/chartist-plugin-tooltip.css')}}">
@@ -47,15 +46,12 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/fonts/simple-line-icons/style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css-rtl/core/colors/palette-gradient.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css-rtl/pages/timeline.css')}}">
-    {{--
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/cryptocoins/cryptocoins.css')}}">
-    --}}
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/extensions/datedropper.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/extensions/timedropper.min.css')}}">
     <!-- END Page Level CSS-->
     <!-- BEGIN Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css-rtl/style-rtl.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css/video-style.css')}}">
     <!-- END Custom CSS-->
     @yield('style')
     <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
@@ -66,14 +62,78 @@
     </style>
 </head>
 
-<body class="vertical-layout vertical-menu menu-expanded fixed-navbar" data-open="click" data-menu="vertical-menu"
-    data-col="2-columns">
+<body
+    class="vertical-layout vertical-menu 1-columns  @if(Request::is('admin/users/tickets/reply*')) chat-application @endif"
+    data-open="click" data-menu="vertical-menu" data-col="2-columns">
     <!-- fixed-top-->
-    @include('admin.includes.header')
-    <!-- ////////////////////////////////////////////////////////////////////////////-->
-    @include('admin.includes.sidebar')
+    <div class="app-content content">
+        <div class="content-wrapper">
+            <div class="content-header row text-center">
+                <div class="content-header-left col-md-12 col-12 mb-2">
+                    <h3 class="content-header-title"> الفيديوهات
+                        <br><br>
+                    </h3>
+                    <div class="row breadcrumbs-top">
+                        <div class="breadcrumb-wrapper col-12">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-body">
+                <!-- DOM - jQuery events table -->
+                <section id="dom">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card border-primary">
+                                <div class="card-header">
+                                    <h4 class="card-title"> جميع الملفات</h4>
+                                    <a class="heading-elements-toggle"><i
+                                            class="la la-ellipsis-v font-medium-3"></i></a>
+                                    <div class="heading-elements">
+                                        <ul class="list-inline mb-0">
+                                            <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                                            <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <table class="table display nowrap table-striped table-bordered table-responsive ">
+                                    <thead class="">
+                                        <tr>
+                                            <th>اسم المجموعة </th>
+                                            {{-- <th>الحالة</th> --}}
+                                            <th> المقر </th>
+                                            <th> الصف </th>
+                                            <th>الإجراءات</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
 
-    @yield('content')
+                                        @include('admin.includes.alerts.success')
+                                        @include('admin.includes.alerts.errors')
+
+                                        <div class="card-content collapse show">
+                                            <div class="card-body card-dashboard">
+                                                <div class="Row d-flex justify-content-center">
+                                                    @foreach ($docs as $doc)
+                                                    <tr>
+                                                        <td>{{$doc -> name}}</td>
+                                                        <td>
+                                                            <a href="{{$doc->link}}"
+                                                                class="btn btn-outline-dark btn-min-width box-shadow-3 mr-1 mb-1">
+                                                                تحميل</a>
+                                                        </td>
+                                                        @endforeach
+                                                        <div class="justify-content-center d-flex">
+                                                        </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                            </div>
+                        </div>
+                </section>
+            </div>
+        </div>
+    </div>
     <!-- ////////////////////////////////////////////////////////////////////////////-->
     @include('admin.includes.footer')
 
@@ -96,16 +156,14 @@
     <script src="{{asset('assets/admin/js/scripts/forms/select/form-select2.js')}}" type="text/javascript"></script>
 
     <!-- BEGIN PAGE VENDOR JS-->
-    {{-- <script src="{{asset('assets/admin/vendors/js/charts/chart.min.js')}}" type="text/javascript"></script> --}}
-    {{-- <script src="{{asset('assets/admin/vendors/js/charts/echarts/echarts.js')}}" type="text/javascript"></script>
-    --}}
+    <script src="{{asset('assets/admin/vendors/js/charts/chart.min.js')}}" type="text/javascript"></script>
+    <script src="{{asset('assets/admin/vendors/js/charts/echarts/echarts.js')}}" type="text/javascript"></script>
 
     <script src="{{asset('assets/admin/vendors/js/extensions/datedropper.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('assets/admin/vendors/js/extensions/timedropper.min.js')}}" type="text/javascript"></script>
 
     <script src="{{asset('assets/admin/vendors/js/forms/icheck/icheck.min.js')}}" type="text/javascript"></script>
-    {{-- <script src="{{asset('assets/admin/js/scripts/pages/chat-application.js')}}" type="text/javascript"></script>
-    --}}
+    <script src="{{asset('assets/admin/js/scripts/pages/chat-application.js')}}" type="text/javascript"></script>
     <!-- END PAGE VENDOR JS-->
     <!-- BEGIN MODERN JS-->
     <script src="{{asset('assets/admin/js/core/app-menu.js')}}" type="text/javascript"></script>
@@ -113,8 +171,7 @@
     <script src="{{asset('assets/admin/js/scripts/customizer.js')}}" type="text/javascript"></script>
     <!-- END MODERN JS-->
     <!-- BEGIN PAGE LEVEL JS-->
-    {{-- <script src="{{asset('assets/admin/js/scripts/pages/dashboard-crypto.js')}}" type="text/javascript"></script>
-    --}}
+    <script src="{{asset('assets/admin/js/scripts/pages/dashboard-crypto.js')}}" type="text/javascript"></script>
 
 
     <script src="{{asset('assets/admin/js/scripts/tables/datatables/datatable-basic.js')}}" type="text/javascript">
