@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::post('/', 'HomeController@profile')->name('student-profile');
+Route::get('/video', 'HomeController@UserIndex')->name('video.UserIndex');
+Route::get('/docs', 'HomeController@Doc')->name('Docs.UserIndex');
 
 Auth::routes();
 

@@ -45,11 +45,6 @@ class Grade extends Model
         return $query->where('active', 1);
     }
 
-    // public function scopeSpecial($query)
-    // {
-    //     return $query;
-    //     // return $query->where('main_category_id', $mainCategory_id);
-    // }
 
 
     //relations

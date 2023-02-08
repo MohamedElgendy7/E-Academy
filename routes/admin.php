@@ -8,12 +8,12 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| admin Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
+| Here is where you can admin web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| contains the "admin" middleware group. Now create something great!
 |
 */
 
@@ -91,7 +91,7 @@ Route::group(
 
             Route::get('student_profile/{id}', 'StudentController@profile')->name('admin.student.profile');
         });
-        ######################### End subcategories Route ########################
+        ######################### End students Route ########################
 
 
         ######################### Begin groups Routes ########################
@@ -109,7 +109,7 @@ Route::group(
 
             Route::get('changeStatus/{id}', 'GroupsController@changeStatus')->name('admin.groups.status');
         });
-        ######################### End subcategories Route ########################
+        ######################### End groups Route ########################
 
 
         ######################### Begin absent Routes ########################
@@ -124,6 +124,36 @@ Route::group(
         });
 
         ######################### End absent Route ########################
+
+
+        ######################### Begin video Routes ########################
+        Route::group(['prefix' => 'video'], function () {
+            Route::get('/', 'VideoController@index')->name('admin.video.index');
+
+            Route::get('create', 'VideoController@create')->name('admin.video.create');
+            Route::post('store', 'VideoController@store')->name('admin.video.store');
+
+            Route::get('delete/{id}', 'VideoController@destroy')->name('admin.video.delete');
+
+            Route::get('changeStatus/{id}', 'VideoController@changeStatus')->name('admin.video.status');
+        });
+        ######################### End video Route ########################
+
+
+
+        ######################### Begin doc Routes ########################
+        Route::group(['prefix' => 'doc'], function () {
+            Route::get('/', 'DocController@index')->name('admin.doc.index');
+
+            Route::get('create/{id}', 'DocController@create')->name('admin.doc.create');
+            Route::post('store', 'DocController@store')->name('admin.doc.store');
+
+            Route::get('delete/{id}', 'DocController@destroy')->name('admin.doc.delete');
+
+            Route::get('changeStatus/{id}', 'DocController@changeStatus')->name('admin.doc.status');
+        });
+        ######################### End doc Route ########################
+
 
         ######################### Begin degree Routes ########################
         Route::group(['prefix' => 'degree'], function () {

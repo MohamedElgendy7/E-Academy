@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Doc;
 use App\Models\Student;
+use App\Models\Video;
 use Illuminate\Http\Request;
 use Laravel\Ui\Presets\React;
 
@@ -38,9 +40,14 @@ class HomeController extends Controller
         return view('front.profile', compact('student', 'absent', 'degrees', 'cashs'));
     }
 
-
-    // public function test()
-    // {
-    //     return  path();
-    // }
+    public function UserIndex()
+    {
+        $videos = Video::active()->get();
+        return view('front.UserIndex', compact('videos'));
+    }
+    public function Doc($grade_id)
+    {
+        $docs = Doc::where('grade_id', $grade_id)->get();
+        return view('front.Docs', compact('docs'));
+    }
 }
