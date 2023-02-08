@@ -1,5 +1,6 @@
 @extends('layouts.admin')
 
+@section('title','اضافة ملف جديد')
 @section('content')
 
 <div class="app-content content">

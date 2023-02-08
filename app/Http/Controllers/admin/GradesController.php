@@ -96,7 +96,7 @@ class GradesController extends Controller
             }
 
             $grade->delete();
-            return redirect()->back('admin.grades')->with(['success' => 'تم حذف الصف بنجاح']);
+            return redirect()->route('admin.grades')->with(['success' => 'تم حذف الصف بنجاح']);
         } catch (\Exception $ex) {
             return redirect()->back()->with(['error' => 'هناك خطأ ما يرجي المحاولة مرة اخري']);
         }

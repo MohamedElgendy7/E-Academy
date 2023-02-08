@@ -1,5 +1,6 @@
 @extends('layouts.admin')
 
+@section('title','الفيديوهات')
 @section('content')
 <div class="app-content content">
     <div class="content-wrapper">

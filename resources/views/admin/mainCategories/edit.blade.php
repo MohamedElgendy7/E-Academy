@@ -1,5 +1,6 @@
 @extends('layouts.admin')
 
+@section('title','تعديل بيانات مقر')
 @section('content')
 
 <div class="app-content content">

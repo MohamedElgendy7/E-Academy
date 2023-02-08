@@ -10,7 +10,7 @@
     <meta name="keywords"
         content="admin template, modern admin template, dashboard template, flat admin template, responsive admin template, web app, crypto dashboard, bitcoin dashboard">
     <meta name="author" content="PIXINVENT">
-    <title>الملفات</title>
+    <title>الفيديوهات</title>
     <link rel="apple-touch-icon" href="{{asset('assets/admin/images/ico/apple-icon-120.png')}}">
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/admin/images/ico/favicon.ico')}}">
     <link
@@ -70,7 +70,7 @@
         <div class="content-wrapper">
             <div class="content-header row text-center">
                 <div class="content-header-left col-md-12 col-12 mb-2">
-                    <h3 class="content-header-title"> الملفات
+                    <h3 class="content-header-title"> اختر الصف
                         <br><br>
                     </h3>
                     <div class="row breadcrumbs-top">
@@ -86,7 +86,7 @@
                         <div class="col-12">
                             <div class="card border-primary">
                                 <div class="card-header">
-                                    <h4 class="card-title"> جميع الملفات</h4>
+                                    <h4 class="card-title">جميع الصفوف </h4>
                                     <a class="heading-elements-toggle"><i
                                             class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
@@ -97,26 +97,29 @@
                                     </div>
                                 </div>
 
+                                @include('admin.includes.alerts.success')
+                                @include('admin.includes.alerts.errors')
+
                                 <div class="card-content collapse show">
                                     <div class="card-body card-dashboard">
                                         <table class="table display nowrap table-striped table-bordered">
                                             <thead class="">
                                                 <tr>
-                                                    <th>الملف </th>
+                                                    <th>الصف </th>
                                                     <th>الإجراءات</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
 
-                                                @isset($docs)
-                                                @foreach($docs as $doc)
+                                                @isset($grades)
+                                                @foreach($grades as $Grade)
                                                 <tr>
-                                                    <td>{{$doc -> name}}</td>
+                                                    <td>{{$Grade -> name}}</td>
                                                     <td>
                                                         <div class="btn-group" role="group" aria-label="Basic example">
-                                                            <a href="{{$doc ->link}}"
-                                                                class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">
-                                                                تحميل
+                                                            <a href="{{route('Docs.user',$Grade -> id)}}"
+                                                                class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">عرض
+                                                                الملفات
                                                             </a>
                                                         </div>
                                                     </td>
@@ -134,6 +137,7 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
                 </section>
             </div>
         </div>

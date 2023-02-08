@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Doc;
+use App\Models\Grade;
 use App\Models\Student;
 use App\Models\Video;
 use Illuminate\Http\Request;
@@ -27,7 +28,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('front.home');
     }
 
 
@@ -43,11 +44,17 @@ class HomeController extends Controller
     public function UserIndex()
     {
         $videos = Video::active()->get();
-        return view('front.UserIndex', compact('videos'));
+        return view('front.videos', compact('videos'));
     }
     public function Doc($grade_id)
     {
         $docs = Doc::where('grade_id', $grade_id)->get();
         return view('front.Docs', compact('docs'));
+    }
+
+    public function gradeDetect()
+    {
+        $grades = Grade::get();
+        return view('front.grades', compact('grades'));
     }
 }
