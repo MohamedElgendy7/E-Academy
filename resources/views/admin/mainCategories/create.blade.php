@@ -50,11 +50,11 @@
                                     <form class="form" action="{{route('admin.maincategories.store')}}" method="POST">
                                         @csrf
 
-
                                         <div class="form-body">
-
                                             <h4 class="form-section"><i class="ft-home"></i> بيانات المقر </h4>
 
+
+                                            <input type="hidden" name="super_id" value="{{Auth::user()->super_id}}">
 
                                             <div class="row">
                                                 <div class="col-md-12">
@@ -66,10 +66,10 @@
                                                         <span class="text-danger"> هذا الحقل مطلوب</span>
                                                         @enderror
                                                     </div>
-
-
                                                 </div>
                                             </div>
+
+
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group mt-1">
@@ -79,15 +79,12 @@
                                                         <label for="switcheryColor4" class="card-title ml-1">
                                                             الحالة
                                                         </label>
-
                                                         @error("active")
                                                         <span class="text-danger"> </span>
                                                         @enderror
                                                     </div>
                                                 </div>
                                             </div>
-                                            {{-- @endforeach --}}
-                                            {{-- @endif --}}
                                         </div>
 
 

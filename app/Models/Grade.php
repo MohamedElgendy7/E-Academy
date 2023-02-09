@@ -4,13 +4,14 @@ namespace App\Models;
 
 use App\Observers\GradeObserver;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Grade extends Model
 {
     protected $table = 'grades';
 
     protected $fillable = [
-        'name',  'active', 'main_category_id', 'created_at', 'updated_at'
+        'name',  'active', 'super_id', 'main_category_id', 'created_at', 'updated_at'
     ];
 
 
@@ -44,6 +45,12 @@ class Grade extends Model
     {
         return $query->where('active', 1);
     }
+
+    public function scopeUser($query)
+    {
+        return $query->where('super_id', Auth::user()->super_id);
+    }
+
 
 
 

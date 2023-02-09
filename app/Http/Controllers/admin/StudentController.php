@@ -18,7 +18,7 @@ class StudentController extends Controller
 {
     public function index()
     {
-        $students = Student::with('mainCategory', 'groups', 'grades')->selection()->get();
+        $students = Student::with('mainCategory', 'groups', 'grades')->user()->selection()->get();
         if ($students->count() == 0) {
             return redirect()->route('admin.maincategories')->with(['error' => 'قم بأضافة طالب اولاً']);
         }

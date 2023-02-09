@@ -44,7 +44,7 @@
                                 <div class="card-body">
                                     <form class="form" action="{{route('admin.cash.store')}}" method="POST">
                                         @csrf
-
+                                        <input type="hidden" name="super_id" value="{{Auth::user()->super_id}}">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">

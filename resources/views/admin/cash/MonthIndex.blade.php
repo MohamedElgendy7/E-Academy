@@ -6,13 +6,13 @@
     <div class="content-wrapper">
         <div class="content-header row">
             <div class="content-header-left col-md-6 col-12 mb-2">
-                <h3 class="content-header-title"> الامتحانات</h3>
+                <h3 class="content-header-title"> الاشهر</h3>
                 <div class="row breadcrumbs-top">
                     <div class="breadcrumb-wrapper col-12">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">الرئيسية</a>
                             </li>
-                            <li class="breadcrumb-item active"> جميع الامتحانات
+                            <li class="breadcrumb-item active">
                             </li>
                         </ol>
                     </div>
@@ -43,7 +43,7 @@
                                 <div class="card-body">
                                     <form class="form" action="{{route('admin.cash.month.store')}}" method="POST">
                                         @csrf
-
+                                        <input type="hidden" name="super_id" value="{{Auth::user()->super_id}}">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
@@ -52,6 +52,22 @@
                                                         placeholder="" name="name">
                                                     @error("name")
                                                     <span class="text-danger"> هذا الحقل مطلوب</span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group mt-1">
+                                                    <input type="checkbox" value="1" name="active" id="switcheryColor4"
+                                                        class="switchery" data-color="success" checked />
+                                                    <label for="switcheryColor4" class="card-title ml-1">
+                                                        الحالة
+                                                    </label>
+
+                                                    @error("active")
+                                                    <span class="text-danger"> </span>
                                                     @enderror
                                                 </div>
                                             </div>
@@ -73,7 +89,7 @@
                     </div>
                 </div>
         </div>
-        @if(App\Models\Month::count() !== 0)
+        @if(App\Models\Month::user()->count() !== 0)
         <div class="content-body">
             <!-- DOM - jQuery events table -->
             <section id="dom">

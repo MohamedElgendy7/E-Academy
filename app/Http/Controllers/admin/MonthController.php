@@ -16,23 +16,24 @@ class MonthController extends Controller
 
     public function store(Request $request)
     {
-        try {
-            if (Month::count() == 0) {
-                Month::create($request->except('_token'));
-                return redirect()->route('admin.cash.month.index')->with(['success' => 'تم اضافة الشهر']);
-            }
-            $months = Month::get();
-            $arr = [];
-            for ($i = 0; $i < $months->count(); $i++) {
-                $arr[] = $months[$i]['name'];
-            }
-            if (!in_array($request->name, $arr)) {
-                Month::create($request->except('_token'));
-                return redirect()->route('admin.cash.month.index')->with(['success' => 'تم اضافة الشهر']);
-            }
-        } catch (\Exception $ex) {
-            return redirect()->route('admin.cash.month.index')->with(['error' => 'حدث خطأ ما ']);
+        // try {
+        if (Month::count() == 0) {
+            Month::create($request->except('_token'));
+            return redirect()->route('admin.cash.month.index')->with(['success' => 'تم اضافة الشهر']);
         }
+        $months = Month::user()->get();
+        $arr = [];
+        for ($i = 0; $i < $months->count(); $i++) {
+            $arr[] = $months[$i]['name'];
+        }
+        if (!in_array($request->name, $arr)) {
+            Month::create($request->except('_token'));
+            return redirect()->route('admin.cash.month.index')->with(['success' => 'تم اضافة الشهر']);
+        }
+        // } catch (\Exception $ex) {
+        //     return $ex;
+        //     return redirect()->route('admin.cash.month.index')->with(['error' => 'حدث خطأ ما ']);
+        // }
     }
 
 

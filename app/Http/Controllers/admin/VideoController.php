@@ -11,7 +11,7 @@ class VideoController extends Controller
 {
     public function index()
     {
-        $videos = Video::get();
+        $videos = Video::user()->get();
         return view('admin.video.index', compact('videos'));
     }
 

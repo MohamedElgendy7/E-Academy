@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Doc extends Model
 {
     protected $table = 'docs';
 
     protected $fillable = [
-        'link', 'name', 'grade_id',  'active', 'created_at', 'updated_at'
+        'link', 'name', 'grade_id', 'super_id',  'active', 'created_at', 'updated_at'
     ];
 
 
@@ -26,5 +27,10 @@ class Doc extends Model
     public function scopeActive($query)
     {
         return $query->where('active', 1);
+    }
+
+    public function scopeUser($query)
+    {
+        return $query->where('super_id', Auth::user()->super_id);
     }
 }

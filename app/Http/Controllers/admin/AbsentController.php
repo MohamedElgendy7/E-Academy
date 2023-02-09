@@ -60,6 +60,7 @@ class AbsentController extends Controller
                 'day' => $truncated,
                 'student_id' => $id,
                 'status' => 1,
+                'group_id' => $student->group_id,
             ]);
             return '<center>تم تسجيل الحضور</center>';
         } else
@@ -70,5 +71,34 @@ class AbsentController extends Controller
     {
         $filepath = public_path('qrcodes\\') . $id . ".png";
         return Response::download($filepath);
+    }
+
+
+    public function absentStudent($id)
+    {
+        $today = Carbon::today();
+        $truncated = Str::limit($today, 10, '');
+
+        $arr = [];
+        $students = Student::where('group_id', $id)->get();
+        $unAbsentStudent =  Absent::select('student_id')->absent($id, $truncated, 1)->get();
+        for ($i = 0; $i < $unAbsentStudent->count(); $i++) {
+            $arr[] = $unAbsentStudent[$i]['student_id'];
+        }
+        foreach ($students as $student) {
+            if (!in_array($student->id, $arr)) {
+                $check = Absent::where('student_id', $student->id)->where('day', $truncated)->get();
+                if ($check->count() == 0) {
+                    Absent::create([
+                        'day' => $truncated,
+                        'student_id' => $student->id,
+                        'group_id' => $student->group_id,
+                        'status' => 0,
+                    ]);
+                }
+            }
+        }
+        $Absents = Absent::where('group_id', $id)->where('day', $truncated)->get();
+        return view('admin.absent.absentStudents', compact('Absents'));
     }
 }

@@ -4,13 +4,14 @@ namespace App\Models;
 
 use App\Observers\MainCategoryObserver;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class mainCategory extends Model
 {
     protected $table = 'main_categories';
 
     protected $fillable = [
-        'name',  'active', 'created_at', 'updated_at'
+        'name',  'active', 'super_id', 'created_at', 'updated_at'
     ];
 
 
@@ -35,6 +36,11 @@ class mainCategory extends Model
     public function scopeActive($query)
     {
         return $query->where('active', 1);
+    }
+
+    public function scopeUser($query)
+    {
+        return $query->where('super_id', Auth::user()->super_id);
     }
 
 

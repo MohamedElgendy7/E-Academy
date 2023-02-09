@@ -9,7 +9,7 @@ class Absent extends Model
     protected $table = 'absents';
 
     protected $fillable = [
-        'day',  'status', 'student_id', 'created_at', 'updated_at'
+        'day',  'status', 'group_id', 'student_id', 'created_at', 'updated_at'
     ];
 
 
@@ -26,6 +26,11 @@ class Absent extends Model
     {
         return $query->where('status', 1);
     }
+
+    public function scopeAbsent($query, $group_id, $day, $status)
+    {
+        return $query->where('group_id', $group_id)->where('day', $day)->where('status', $status);
+    }
     //scopes
 
     // public function scopeMarked($query, $student_id, $day)
@@ -37,5 +42,10 @@ class Absent extends Model
     public function students()
     {
         return $this->belongsTo(Student::class, 'student_id', 'id');
+    }
+
+    public function group()
+    {
+        return $this->belongsTo(Group::class, 'group_id', 'id');
     }
 }

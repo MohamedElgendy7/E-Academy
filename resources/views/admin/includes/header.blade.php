@@ -38,7 +38,7 @@
                                 <img style="height: 35px;" src="" alt="avatar"><i></i></span> --}}
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="{{--route('admin.logout')--}}"><i class="ft-power"></i> تسجيل
+                            <a class="dropdown-item" href="{{route('admin.logout')}}"><i class="ft-power"></i> تسجيل
                                 الخروج
                             </a>
                         </div>

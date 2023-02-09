@@ -4,13 +4,14 @@ namespace App\Models;
 
 use App\Observers\GroupObserver;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Group extends Model
 {
     protected $table = 'groups';
 
     protected $fillable = [
-        'name',  'active', 'main_category_id', 'grade_id', 'created_at', 'updated_at'
+        'name',  'active', 'super_id', 'main_category_id', 'grade_id', 'created_at', 'updated_at'
     ];
 
 
@@ -34,6 +35,11 @@ class Group extends Model
     public function scopeSelection($query)
     {
         return $query->select('id', 'name', 'active', 'main_category_id', 'grade_id');
+    }
+
+    public function scopeUser($query)
+    {
+        return $query->where('super_id', Auth::user()->super_id);
     }
 
     public function scopeSame($query, $grade_id, $main_category_id)
@@ -73,6 +79,6 @@ class Group extends Model
 
     public function abesnt()
     {
-        return $this->hasOneThrough(Absent::class, Student::class, 'group_id', 'student_id', 'id', 'id');
+        return $this->hasMany(Absent::class, 'group_id', 'id');
     }
 }

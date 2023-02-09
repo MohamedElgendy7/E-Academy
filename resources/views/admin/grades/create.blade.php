@@ -47,7 +47,6 @@
                                 <div class="card-body">
                                     <form class="form" action="{{route('admin.grades.store')}}" method="POST">
                                         @csrf
-
                                         <div class="form-body">
                                             <h4 class="form-section"><i class="ft-home"></i> بيانات الصف </h4>
                                             <div class="row">
@@ -62,7 +61,9 @@
                                                     </div>
                                                 </div>
 
+
                                                 <input type="hidden" value="{{$category->id }}" name='main_category_id'>
+                                                <input type="hidden" value="{{Auth::user()->super_id}}" name='super_id'>
 
 
                                             </div>

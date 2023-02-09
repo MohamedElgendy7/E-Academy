@@ -62,6 +62,7 @@
                                                     </div>
                                                 </div>
 
+                                                <input type="hidden" value="{{Auth::user()->super_id}}" name='super_id'>
                                                 <input type="hidden" value="{{$grade->id}}" name='grade_id'>
                                                 <input type="hidden" value="{{$grade->main_category_id}}"
                                                     name='main_category_id'>

@@ -74,6 +74,11 @@
                                                             الطلاب</a>
 
 
+                                                        <a href="{{route('admin.absent.students',$group -> id)}}"
+                                                            class="btn btn-outline-info btn-min-width box-shadow-3 mr-1 mb-1">الغائبين
+                                                        </a>
+
+
                                                         <a href="{{route('admin.degree.create',$group -> id)}}"
                                                             class="btn btn-outline-success btn-min-width box-shadow-3 mr-1 mb-1">
                                                             تسجيل درجات</a>

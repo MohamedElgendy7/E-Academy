@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 
@@ -11,7 +12,7 @@ class Video extends Model
     protected $table = 'videos';
 
     protected $fillable = [
-        'link', 'cap', 'active', 'created_at', 'updated_at'
+        'link', 'cap', 'active', 'super_id', 'created_at', 'updated_at'
     ];
 
 
@@ -32,5 +33,10 @@ class Video extends Model
     public function scopeActive($query)
     {
         return $query->where('active', 1);
+    }
+
+    public function scopeUser($query)
+    {
+        return $query->where('super_id', Auth::user()->super_id);
     }
 }

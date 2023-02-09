@@ -41,9 +41,11 @@ class DegreeController extends Controller
 
     public function show($group_id)
     {
-        // return  $exams = Exam::find(5)->degrees;
-        $exams = Exam::get();
-        return view('admin.degrees.index', compact('group_id', 'exams'));
+        $exams = Exam::user()->get();
+        if ($exams->count() > 0) {
+            return view('admin.degrees.index', compact('group_id', 'exams'));
+        }
+        return redirect()->back()->with(['error' => 'لا يوجد امتحانات']);
     }
 
     public function results($group_id, $exam_id)

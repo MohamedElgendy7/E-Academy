@@ -14,7 +14,7 @@ class GroupsController extends Controller
 {
     public function index()
     {
-        $groups = Group::with('grades', 'main_category')->selection()->get();
+        $groups = Group::active()->user()->get();
         if ($groups->count() > 0) {
             return view('admin.groups.index', compact('groups'));
         }

@@ -13,7 +13,7 @@ class CashController extends Controller
 {
     public function index()
     {
-        $months = Month::paginate(PAGINATION_COUNT);
+        $months = Month::user()->get();
         return view('admin.cash.MonthIndex', compact('months'));
     }
 
@@ -21,16 +21,17 @@ class CashController extends Controller
     {
         try {
             $students = Group::with('students')->find($group_id)->students;
-            if (Month::count() == 0) {
-                return redirect()->route('admin.cash.month.create')->with(['error' => 'قم بالتسجيل اولاً']);
+            if (Month::user()->count() == 0) {
+                return redirect()->route('admin.cash.month.create')->with(['error' => 'قم بالتسجيل شهر اولاً']);
             }
+
             if ($students->count() == 0) {
                 return redirect()->route('admin.student.create')->with(['error' => 'قم بأضافة طلاب اولاً']);
             }
-            $months = Month::active()->get();
+            $months = Month::user()->active()->get();
             return view('admin.cash.create', compact('students', 'months'));
         } catch (\Exception $ex) {
-            //
+            return redirect()->back()->with(['error' => 'قد لا يوجد شهر لتسجيل مصروفات له']);
         }
     }
 

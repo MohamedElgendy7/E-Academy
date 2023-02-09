@@ -5,13 +5,18 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\Doc;
 use App\Models\Grade;
+use App\Models\Group;
 use Illuminate\Http\Request;
 
 class DocController extends Controller
 {
     public function index()
     {
-        $Docs = Doc::get();
+        $Docs = Doc::user()->get();
+        if ($Docs->count() == 0) {
+            $groups = Group::with('grades', 'main_category')->user()->selection()->get();
+            return redirect()->route('admin.groups')->with(['error' => 'لا يوجد ملفات , قم بأضافة ملف أولاً']);
+        }
         return view('admin.doc.index', compact('Docs'));
     }
 

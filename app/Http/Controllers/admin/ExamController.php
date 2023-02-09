@@ -11,7 +11,8 @@ class ExamController extends Controller
 {
     public function index()
     {
-        $exams = Exam::all();
+        $exams = Exam::user()->get();
+
         if ($exams->count() > 0) {
             return view('admin.exams.index', compact('exams'));
         }

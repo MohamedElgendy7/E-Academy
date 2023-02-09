@@ -11,7 +11,7 @@
                         <li class="nav-item"><a href=""><i class="la la-home"></i>
                                         <span class="menu-title" data-i18n="nav.dash.main">المقرات الرئيسيه </span>
                                         <span
-                                                class="badge badge badge-danger badge-pill float-right mr-2">{{App\Models\mainCategory::count()}}</span>
+                                                class="badge badge badge-danger badge-pill float-right mr-2">{{App\Models\mainCategory::user()->count()}}</span>
                                 </a>
                                 <ul class="menu-content">
                                         <li class="active"><a class="menu-item" href="{{route('admin.maincategories')}}"
@@ -28,7 +28,7 @@
                         <li class="nav-item"><a href=""><i class="la la-graduation-cap"></i>
                                         <span class="menu-title" data-i18n="nav.dash.main">الصفوف </span>
                                         <span
-                                                class="badge badge badge-primary badge-pill float-right mr-2">{{App\Models\Grade::count()}}</span>
+                                                class="badge badge badge-primary badge-pill float-right mr-2">{{App\Models\Grade::user()->count()}}</span>
                                 </a>
                                 <ul class="menu-content">
                                         <li class="active"><a class="menu-item" href="{{route('admin.grades')}}"
@@ -41,7 +41,7 @@
                         <li class="nav-item"><a href=""><i class="la la-group"></i>
                                         <span class="menu-title" data-i18n="nav.dash.main">المجموعات </span>
                                         <span
-                                                class="badge badge badge-success badge-pill float-right mr-2">{{App\Models\Group::count()}}</span>
+                                                class="badge badge badge-success badge-pill float-right mr-2">{{App\Models\Group::user()->count()}}</span>
                                 </a>
                                 <ul class="menu-content">
                                         <li class="active"><a class="menu-item" href="{{route('admin.groups')}}"
@@ -54,7 +54,7 @@
                         <li class="nav-item"><a href=""><i class="la la-male"></i>
                                         <span class="menu-title" data-i18n="nav.dash.main">الطلاب </span>
                                         <span
-                                                class="badge badge badge-warning  badge-pill float-right mr-2">{{App\Models\Student::count()}}</span>
+                                                class="badge badge badge-warning  badge-pill float-right mr-2">{{App\Models\Student::user()->count()}}</span>
                                 </a>
                                 <ul class="menu-content">
                                         <li class="active"><a class="menu-item" href="{{route('admin.student')}}"
@@ -68,7 +68,7 @@
                         <li class="nav-item"><a href=""><i class="la la-file-text-o"></i>
                                         <span class="menu-title" data-i18n="nav.dash.main">الامتحانات </span>
                                         <span
-                                                class="badge badge badge-dark  badge-pill float-right mr-2">{{App\Models\Exam::count()}}</span>
+                                                class="badge badge badge-dark  badge-pill float-right mr-2">{{App\Models\Exam::user()->count()}}</span>
                                 </a>
                                 <ul class="menu-content">
                                         <li class="active"><a class="menu-item" href="{{route('admin.exam')}}"
@@ -86,7 +86,7 @@
                         <li class="nav-item"><a href=""><i class="la la-dollar"></i>
                                         <span class="menu-title" data-i18n="nav.dash.main">المصروفات </span>
                                         <span
-                                                class="badge badge badge-info  badge-pill float-right mr-2">{{App\Models\Month::count()}}</span>
+                                                class="badge badge badge-info  badge-pill float-right mr-2">{{App\Models\Month::user()->count()}}</span>
                                 </a>
                                 <ul class="menu-content">
                                         <li class="active"><a class="menu-item"
@@ -101,7 +101,7 @@
                         <li class="nav-item"><a href=""><i class="la la-youtube"></i>
                                         <span class="menu-title" data-i18n="nav.dash.main">الفيديوهات </span>
                                         <span
-                                                class="badge badge badge-danger  badge-pill float-right mr-2">{{App\Models\Video::count()}}</span>
+                                                class="badge badge badge-danger  badge-pill float-right mr-2">{{App\Models\Video::user()->count()}}</span>
                                 </a>
                                 <ul class="menu-content">
                                         <li class="active"><a class="menu-item" href="{{route('admin.video.index')}}"
@@ -121,7 +121,7 @@
                         <li class="nav-item"><a href=""><i class="la la-file"></i>
                                         <span class="menu-title" data-i18n="nav.dash.main">الملفات </span>
                                         <span
-                                                class="badge bg-light text-dark  badge-pill float-right mr-2">{{App\Models\Doc::count()}}</span>
+                                                class="badge bg-light text-dark  badge-pill float-right mr-2">{{App\Models\Doc::user()->count()}}</span>
                                 </a>
                                 <ul class="menu-content">
                                         <li class="active"><a class="menu-item" href="{{route('admin.doc.index')}}"

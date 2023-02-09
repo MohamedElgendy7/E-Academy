@@ -28,6 +28,7 @@ Route::group(
     function () {
         Route::get('/login', 'LoginController@getLogin')->name('get.admin.login');
         Route::post('/login', 'LoginController@login')->name('admin.login');
+        Route::get('/logout', 'LoginController@logout')->name('admin.logout');
     }
 );
 
@@ -121,6 +122,8 @@ Route::group(
             //absent from QR code
             Route::get('/qr/{id}', 'AbsentController@QRstore');
             Route::get('/download-QR/{id}', 'AbsentController@download')->name('download');
+
+            Route::get('/absent-Student/{id}', 'AbsentController@absentStudent')->name('admin.absent.students');
         });
 
         ######################### End absent Route ########################

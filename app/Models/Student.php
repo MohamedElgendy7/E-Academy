@@ -4,13 +4,14 @@ namespace App\Models;
 
 use App\Observers\StudentObserver;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Student extends Model
 {
     protected $table = 'Students';
 
     protected $fillable = [
-        'name', 'number', 'active', 'group_id', 'Parentnumber', 'main_category_id',  'grade_id', 'created_at', 'updated_at',
+        'name', 'number', 'active', 'super_id', 'group_id', 'Parentnumber', 'main_category_id',  'grade_id', 'created_at', 'updated_at',
     ];
 
 
@@ -33,6 +34,11 @@ class Student extends Model
     public function scopeSame($query, $grade_id, $mainCategory_id, $group_id)
     {
         return $query->where('grade_id', $grade_id)->where('main_category_id', $mainCategory_id)->where('group_id', $group_id);
+    }
+
+    public function scopeUser($query)
+    {
+        return $query->where('super_id', Auth::user()->super_id);
     }
 
     public function scopeSelection($query)

@@ -16,7 +16,7 @@ class GradesController extends Controller
 {
     public function index()
     {
-        $grades = Grade::with('main_category', 'groups')->selection()->get();
+        $grades = Grade::with('main_category', 'groups')->user()->selection()->get();
         if ($grades->count() > 0) {
             return view('admin.grades.index', compact('grades'));
         }

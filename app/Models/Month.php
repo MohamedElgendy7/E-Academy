@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Month extends Model
 {
     protected $table = 'months';
 
     protected $fillable = [
-        'name', 'active', 'created_at', 'updated_at'
+        'name', 'active', 'super_id', 'created_at', 'updated_at'
     ];
 
 
@@ -21,5 +22,10 @@ class Month extends Model
     public function scopeActive($query)
     {
         return $query->where('active', 1);
+    }
+
+    public function scopeUser($query)
+    {
+        return $query->where('super_id', Auth::user()->super_id);
     }
 }

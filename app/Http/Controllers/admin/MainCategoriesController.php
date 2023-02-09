@@ -17,7 +17,7 @@ class MainCategoriesController extends Controller
 {
     public function index()
     {
-        $categories = mainCategory::selection()->get();
+        $categories = mainCategory::user()->selection()->get();
         if (!$categories->count() > 0) {
             return redirect()->route('admin.maincategories.create')->with(['error' =>  ' لا يوجد مقرات قم بأضافة مقر ']);
         }

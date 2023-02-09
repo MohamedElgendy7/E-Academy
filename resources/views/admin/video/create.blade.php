@@ -46,6 +46,10 @@
                                     <form class="form" action="{{route('admin.video.store')}}" method="POST">
                                         @csrf
 
+
+                                        <input type="hidden" name="super_id" value="{{Auth::user()->super_id}}">
+
+
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">

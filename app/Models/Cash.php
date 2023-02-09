@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Cash extends Model
 {
@@ -10,13 +11,20 @@ class Cash extends Model
 
 
     protected $fillable = [
-        'month',  'paid', 'student_id',  'created_at', 'updated_at'
+        'month',  'paid', 'super_id', 'student_id',  'created_at', 'updated_at'
     ];
 
 
     protected $hidden = [
         'created_at', 'updated_at',
     ];
+
+
+
+    public function scopeUser($query)
+    {
+        return $query->where('super_id', Auth::user()->super_id);
+    }
 
     public function student()
     {

@@ -47,6 +47,7 @@
                                         @csrf
 
                                         <input type="hidden" value="{{$grade_id}}" name="grade_id">
+                                        <input type="hidden" name="super_id" value="{{Auth::user()->super_id}}">
 
                                         <div class="row">
                                             <div class="col-md-12">
