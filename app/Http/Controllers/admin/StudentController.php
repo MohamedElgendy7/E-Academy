@@ -141,7 +141,7 @@ class StudentController extends Controller
     public function profile($id)
     {
 
-        $student = Student::with('absent', 'degree')->find($id);
+        $student = Student::user()->with('absent', 'degree')->find($id);
         $absent = $student->absent;
         $degrees = $student->degree;
         $cashs = $student->cash;

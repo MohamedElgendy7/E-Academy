@@ -142,6 +142,13 @@ Route::group(
         });
         ######################### End video Route ########################
 
+        ######################### Begin roles Routes ########################
+        Route::group(['prefix' => 'Roles'], function () {
+            Route::get('/', 'RoleController@index')->name('admin.Roles.index');
+            Route::get('change/{admin_id}/{role}', 'RoleController@changeStatusRole')->name('admin.Roles.change');
+        });
+        ######################### End video Route ########################
+
 
 
         ######################### Begin doc Routes ########################

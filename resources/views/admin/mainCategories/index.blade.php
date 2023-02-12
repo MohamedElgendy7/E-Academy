@@ -58,25 +58,28 @@
                                                 <td>{{$category -> getActive()}}</td>
                                                 <td>
                                                     <div class="btn-group" role="group" aria-label="Basic example">
+                                                        @if(Auth::user()->addRole == 1)
                                                         <a href="{{route('admin.grades.create',$category -> id)}}"
                                                             class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">اضافة
                                                             صف</a>
+                                                        @endif
 
 
                                                         <a href="{{route('admin.maincategories.show',$category -> id)}}"
                                                             class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">عرض
                                                             الصفوف</a>
-
+                                                        @if(Auth::user()->EditRole == 1)
                                                         <a href="{{route('admin.maincategories.edit',$category -> id)}}"
                                                             class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">تعديل</a>
+                                                        @endif
 
-
+                                                        @if(Auth::user()->DeleteRole == 1)
                                                         <a href="{{route('admin.maincategories.delete',$category -> id)}}"
                                                             class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">حذف</a>
+                                                        @endif
 
 
-
-
+                                                        @if(Auth::user()->ActiveRole == 1)
                                                         <a href="{{route('admin.maincategories.status',$category -> id)}}"
                                                             class="btn btn-outline-warning btn-min-width box-shadow-3 mr-1 mb-1">
                                                             @if($category -> active == 0)
@@ -85,6 +88,7 @@
                                                             الغاء تفعيل
                                                             @endif
                                                         </a>
+                                                        @endif
 
                                                     </div>
                                                 </td>

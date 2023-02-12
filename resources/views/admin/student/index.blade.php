@@ -66,19 +66,20 @@
                                                         src="{{$Grade -> photo}}"></td> --}}
                                                 <td>
                                                     <div class="btn-group" role="group" aria-label="Basic example">
+                                                        @if(Auth::user()->EditRole == 1)
                                                         <a href="{{route('admin.student.edit',$student -> id)}}"
                                                             class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">تعديل</a>
-
-
+                                                        @endif
+                                                        @if(Auth::user()->DeleteRole == 1)
                                                         <a href="{{route('admin.student.delete',$student -> id)}}"
                                                             class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">حذف</a>
-
+                                                        @endif
 
                                                         <a href="{{route('admin.student.profile',$student -> id)}}"
                                                             class="btn btn-outline-info btn-min-width box-shadow-3 mr-1 mb-1">ملف
                                                             الطالب</a>
 
-
+                                                        @if(Auth::user()->ActiveRole == 1)
                                                         <a href="{{route('admin.student.status',$student -> id)}}"
                                                             class="btn btn-outline-warning btn-min-width box-shadow-3 mr-1 mb-1">
                                                             @if($student -> active == 0)
@@ -87,6 +88,7 @@
                                                             الغاء تفعيل
                                                             @endif
                                                         </a>
+                                                        @endif
 
                                                     </div>
                                                 </td>

@@ -41,20 +41,20 @@ class HomeController extends Controller
         return view('front.profile', compact('student', 'absent', 'degrees', 'cashs'));
     }
 
-    public function UserIndex()
+    public function video($student_id)
     {
-        $videos = Video::active()->get();
+        $videos = Video::student($student_id)->active()->get();
         return view('front.videos', compact('videos'));
     }
-    public function Doc($grade_id)
+    public function Doc($grade_id, $student_id)
     {
-        $docs = Doc::where('grade_id', $grade_id)->get();
+        $docs = Doc::student($student_id)->where('grade_id', $grade_id)->get();
         return view('front.Docs', compact('docs'));
     }
 
-    public function gradeDetect()
+    public function gradeDetect($student_id)
     {
-        $grades = Grade::get();
-        return view('front.grades', compact('grades'));
+        $grades = Grade::student($student_id)->get();
+        return view('front.grades', compact('grades', 'student_id'));
     }
 }

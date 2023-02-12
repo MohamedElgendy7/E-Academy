@@ -16,9 +16,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::post('/', 'HomeController@profile')->name('student-profile');
-Route::get('/video', 'HomeController@UserIndex')->name('video.user');
-Route::get('/docs/{id}', 'HomeController@Doc')->name('Docs.user');
-Route::get('/grades', 'HomeController@gradeDetect')->name('grade.user');
+Route::get('/video/{Student_id}', 'HomeController@video')->name('video.user');
+Route::get('/docs/{grade_id}/{student_id}', 'HomeController@Doc')->name('Docs.user');
+Route::get('/grades/{student_id}', 'HomeController@gradeDetect')->name('grade.user');
 
 Auth::routes();
 

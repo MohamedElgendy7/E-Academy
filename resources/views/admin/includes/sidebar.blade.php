@@ -17,10 +17,12 @@
                                         <li class="active"><a class="menu-item" href="{{route('admin.maincategories')}}"
                                                         data-i18n="nav.dash.ecommerce"> عرض الكل </a>
                                         </li>
+                                        @if(Auth::user()->addRole == 1)
                                         <li><a class="menu-item" href="{{route('admin.maincategories.create')}}"
                                                         data-i18n="nav.dash.crypto">أضافة
                                                         مقر جديد </a>
                                         </li>
+                                        @endif
                                 </ul>
                         </li>
 
@@ -64,7 +66,7 @@
                                 </ul>
                         </li>
 
-
+                        @if(Auth::user()->ExamRole == 1)
                         <li class="nav-item"><a href=""><i class="la la-file-text-o"></i>
                                         <span class="menu-title" data-i18n="nav.dash.main">الامتحانات </span>
                                         <span
@@ -81,8 +83,9 @@
                                         </li>
                                 </ul>
                         </li>
+                        @endif
 
-
+                        @if(Auth::user()->payRole == 1)
                         <li class="nav-item"><a href=""><i class="la la-dollar"></i>
                                         <span class="menu-title" data-i18n="nav.dash.main">المصروفات </span>
                                         <span
@@ -96,8 +99,9 @@
                                         </li>
                                 </ul>
                         </li>
+                        @endif
 
-
+                        @if(Auth::user()->videoRole == 1)
                         <li class="nav-item"><a href=""><i class="la la-youtube"></i>
                                         <span class="menu-title" data-i18n="nav.dash.main">الفيديوهات </span>
                                         <span
@@ -108,16 +112,15 @@
                                                         data-i18n="nav.dash.ecommerce">
                                                         عرض الكل </a>
                                         </li>
-
                                         <li class="active"><a class="menu-item" href="{{route('admin.video.create')}}"
                                                         data-i18n="nav.dash.ecommerce">
                                                         اضافة فيديو جديد</a>
                                         </li>
-
                                 </ul>
                         </li>
+                        @endif
 
-
+                        @if(Auth::user()->docRole == 1)
                         <li class="nav-item"><a href=""><i class="la la-file"></i>
                                         <span class="menu-title" data-i18n="nav.dash.main">الملفات </span>
                                         <span
@@ -128,8 +131,17 @@
                                                         data-i18n="nav.dash.ecommerce">
                                                         عرض الكل </a>
                                         </li>
-
                                 </ul>
                         </li>
+                        @endif
+
+                        @if(Auth::user()->superRole == 1)
+                        <li class="nav-item"><a class="menu-item" href="{{route('admin.Roles.index')}}"
+                                        data-i18n="nav.dash.ecommerce"><i class="la la-tags"></i>
+                                        <span class="menu-title" data-i18n="nav.dash.main">الصلاحيات </span>
+                                </a>
+                        </li>
+                        @endif
+                </ul>
         </div>
 </div>

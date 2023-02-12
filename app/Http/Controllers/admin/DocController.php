@@ -15,7 +15,7 @@ class DocController extends Controller
         $Docs = Doc::user()->get();
         if ($Docs->count() == 0) {
             $groups = Group::with('grades', 'main_category')->user()->selection()->get();
-            return redirect()->route('admin.groups')->with(['error' => 'لا يوجد ملفات , قم بأضافة ملف أولاً']);
+            return redirect()->route('admin.grades')->with(['error' => 'لا يوجد ملفات , قم بأضافة ملف أولاً']);
         }
         return view('admin.doc.index', compact('Docs'));
     }

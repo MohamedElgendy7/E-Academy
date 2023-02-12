@@ -62,27 +62,32 @@
                                                         src="{{$Grade -> photo}}"></td> --}}
                                                 <td>
                                                     <div class="btn-group" role="group" aria-label="Basic example">
+                                                        @if(Auth::user()->addRole == 1)
                                                         <a href="{{route('admin.groups.create',$Grade -> id)}}"
                                                             class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">اضافة
                                                             مجموعة</a>
-
+                                                        @endif
+                                                        @if(Auth::user()->docRole == 1)
                                                         <a href="{{route('admin.doc.create',$Grade -> id)}}"
                                                             class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">اضافة
                                                             ملف</a>
+                                                        @endif
 
                                                         <a href="{{route('admin.grades.show',$Grade -> id)}}"
                                                             class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">عرض
                                                             المجموعات</a>
 
-
+                                                        @if(Auth::user()->EditRole == 1)
                                                         <a href="{{route('admin.grades.edit',$Grade -> id)}}"
                                                             class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">تعديل</a>
+                                                        @endif
 
-
+                                                        @if(Auth::user()->DeleteRole == 1)
                                                         <a href="{{route('admin.grades.delete',$Grade -> id)}}"
                                                             class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">حذف</a>
+                                                        @endif
 
-
+                                                        @if(Auth::user()->ActiveRole == 1)
                                                         <a href="{{route('admin.grades.status',$Grade -> id)}}"
                                                             class="btn btn-outline-warning btn-min-width box-shadow-3 mr-1 mb-1">
                                                             @if($Grade -> active == 0)
@@ -91,6 +96,7 @@
                                                             الغاء تفعيل
                                                             @endif
                                                         </a>
+                                                        @endif
 
                                                     </div>
                                                 </td>

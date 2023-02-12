@@ -63,10 +63,11 @@
                                                 <td>
                                                     <div class="btn-group" role="group" aria-label="Basic example">
 
-
+                                                        @if(Auth::user()->addStudentRole == 1)
                                                         <a href="{{route('admin.student.create',$group ->id)}}"
                                                             class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">اضافة
                                                             طالب</a>
+                                                        @endif
 
 
                                                         <a href="{{route('admin.student.show',$group -> id)}}"
@@ -75,7 +76,8 @@
 
 
                                                         <a href="{{route('admin.absent.students',$group -> id)}}"
-                                                            class="btn btn-outline-info btn-min-width box-shadow-3 mr-1 mb-1">الغائبين
+                                                            class="btn btn-outline-info btn-min-width box-shadow-3 mr-1 mb-1">كشف
+                                                            غياب اليوم
                                                         </a>
 
 
@@ -94,7 +96,7 @@
                                                             class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">تسجيل
                                                             مصروفات</a>
 
-
+                                                        @if(Auth::user()->ActiveRole == 1)
                                                         <a href="{{route('admin.groups.status',$group -> id)}}"
                                                             class="btn btn-outline-warning btn-min-width box-shadow-3 mr-1 mb-1">
                                                             @if($group -> active == 0)
@@ -103,12 +105,15 @@
                                                             الغاء تفعيل
                                                             @endif
                                                         </a>
-
+                                                        @endif
+                                                        @if(Auth::user()->EditRole == 1)
                                                         <a href="{{route('admin.groups.edit',$group -> id)}}"
                                                             class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">تعديل</a>
-
+                                                        @endif
+                                                        @if(Auth::user()->DeleteRole == 1)
                                                         <a href="{{route('admin.groups.delete',$group -> id)}}"
                                                             class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">حذف</a>
+                                                        @endif
 
                                                     </div>
                                                 </td>

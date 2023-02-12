@@ -33,4 +33,9 @@ class Doc extends Model
     {
         return $query->where('super_id', Auth::user()->super_id);
     }
+
+    public function scopeStudent($query, $student_id)
+    {
+        return $query->where('super_id', Student::find($student_id)->super_id);
+    }
 }

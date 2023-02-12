@@ -60,6 +60,7 @@
             font-family: 'Cairo', sans-serif;
         }
     </style>
+
 </head>
 
 <body
@@ -73,6 +74,12 @@
                     <h3 class="content-header-title"> ملف الطالب
                         <br><br>
                         <h2>{{$student -> name}}</h2>
+                        <a href="{{route('video.user',$student ->id)}}"
+                            class="btn btn-outline-info btn-min-width box-shadow-3 mr-1 mb-1">الفيديوهات
+                        </a>
+                        <a href="{{route('grade.user',$student ->id)}}"
+                            class="btn btn-outline-info btn-min-width box-shadow-3 mr-1 mb-1">الملفات
+                        </a>
                     </h3>
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
@@ -85,17 +92,17 @@
                 <section id="dom">
                     <div class="row">
                         <div class="col-12">
-                            <div class="card">
+                            <div class="card border-primary">
                                 <div class="card-header">
-                                    <h4 class="card-title"> بيانات الطالب -
+                                    {{-- <img src="{{asset('assets/admin/images/logo/logo-80x80.png')}}" alt=""
+                                        style="width: 30px"> --}}
+                                    <h4 class="card-title"> بيانات الطالب
                                         <a class="heading-elements-toggle"><i
                                                 class="la la-ellipsis-v font-medium-3"></i></a>
                                         <div class="heading-elements">
                                             <ul class="list-inline mb-0">
                                                 <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-                                                <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
                                                 <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
-                                                <li><a data-action="close"><i class="ft-x"></i></a></li>
                                             </ul>
                                         </div>
                                 </div>
@@ -145,17 +152,15 @@
                 <section id="dom">
                     <div class="row">
                         <div class="col-12">
-                            <div class="card">
+                            <div class="card border-primary">
                                 <div class="card-header">
-                                    <h4 class="card-title"> غياب الطالب -
+                                    <h4 class="card-title"> غياب الطالب
                                         <a class="heading-elements-toggle"><i
                                                 class="la la-ellipsis-v font-medium-3"></i></a>
                                         <div class="heading-elements">
                                             <ul class="list-inline mb-0">
                                                 <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-                                                <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
                                                 <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
-                                                <li><a data-action="close"><i class="ft-x"></i></a></li>
                                             </ul>
                                         </div>
                                 </div>
@@ -194,17 +199,15 @@
                 <section id="dom">
                     <div class="row">
                         <div class="col-12">
-                            <div class="card">
+                            <div class="card border-primary">
                                 <div class="card-header">
-                                    <h4 class="card-title"> درجات الطالب -
+                                    <h4 class="card-title"> درجات الطالب
                                         <a class="heading-elements-toggle"><i
                                                 class="la la-ellipsis-v font-medium-3"></i></a>
                                         <div class="heading-elements">
                                             <ul class="list-inline mb-0">
                                                 <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-                                                <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
                                                 <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
-                                                <li><a data-action="close"><i class="ft-x"></i></a></li>
                                             </ul>
                                         </div>
                                 </div>
@@ -244,17 +247,15 @@
                 <section id="dom">
                     <div class="row">
                         <div class="col-12">
-                            <div class="card">
+                            <div class="card border-primary">
                                 <div class="card-header">
-                                    <h4 class="card-title"> مصرفات الطالب -
+                                    <h4 class="card-title"> مصرفات الطالب
                                         <a class="heading-elements-toggle"><i
                                                 class="la la-ellipsis-v font-medium-3"></i></a>
                                         <div class="heading-elements">
                                             <ul class="list-inline mb-0">
                                                 <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-                                                <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
                                                 <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
-                                                <li><a data-action="close"><i class="ft-x"></i></a></li>
                                             </ul>
                                         </div>
                                 </div>
