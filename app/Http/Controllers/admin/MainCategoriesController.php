@@ -6,11 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\mainCategoryRequest;
 use App\Models\Grade;
 use App\Models\mainCategory;
-use App\Observers\StudentObserver;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 
 class MainCategoriesController extends Controller
@@ -18,6 +13,7 @@ class MainCategoriesController extends Controller
     public function index()
     {
         $categories = mainCategory::user()->selection()->get();
+
         if (!$categories->count() > 0) {
             return redirect()->route('admin.maincategories.create')->with(['error' =>  ' لا يوجد مقرات قم بأضافة مقر ']);
         }

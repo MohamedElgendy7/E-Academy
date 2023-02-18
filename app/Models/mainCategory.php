@@ -46,7 +46,7 @@ class mainCategory extends Model
 
     public function scopeSelection($query)
     {
-        return $query->select('id', 'name', 'active');
+        return $query->select('id', 'name', 'active')->where('super_id', Auth::user()->super_id);
     }
 
     //model method 
